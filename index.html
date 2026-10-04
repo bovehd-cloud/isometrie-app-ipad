@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#1d2734">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Isometrie-App">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="app-icon-192.png">
+<link rel="apple-touch-icon" href="app-icon-180.png">
 <title>Isometrie-App</title>
 <style>
 *{box-sizing:border-box}
@@ -367,7 +373,7 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
 <div id="app">
   <div id="toolbar">
     <div class="app-brand" aria-label="Isometrie-App">
-      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png" alt="" aria-hidden="true"></span>
+      <span class="app-brand-mark"><img class="app-brand-logo-light" src="assets/rohrtec-logo-hell.png" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="assets/rohrtec-logo-dark.png" alt="" aria-hidden="true"></span>
       <div><strong>Isometrie-App</strong><small>Isometrien zeichnen</small></div>
     </div>
     <div class="history-controls" role="group" aria-label="Bearbeitungsschritte">
@@ -699,10 +705,10 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
   </div>
 </div>
 
-<script src="symbol-data.js"></script>
-<script src="permanent-symbols.js"></script>
-<script src="pdf-lib.min.js"></script>
-<script src="xlsx.full.min.js"></script>
+<script src="assets/symbol-data.js"></script>
+<script src="assets/permanent-symbols.js"></script>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="vendor/xlsx.full.min.js"></script>
 <script>
 const paper=document.getElementById('paper');
 const zoomInBtn=document.getElementById('zoomInBtn');
@@ -6849,6 +6855,11 @@ restorePersistedDrawing();
 updateThemeToggle();
 renderSheetBar();updatePlanHeader();resize();setZoom(state.zoom);updateButtons();
 restoreBundledProjectList().then(updatePlanHeader).catch(()=>{projectListEntries=[];updatePlanHeader();});
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(error=>{
+    console.warn('Offline-Installation konnte nicht vorbereitet werden.',error);
+  }));
+}
 </script>
 </body>
 </html>

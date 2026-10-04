@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Isometrie-App",
+  "short_name": "Isometrie",
+  "description": "HKLS-Isometrien zeichnen und Mengen erfassen",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1d2734",
+  "theme_color": "#1d2734",
+  "icons": [
+    { "src": "app-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "app-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
