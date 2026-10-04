@@ -1,0 +1,41 @@
+20203;Kleinbaustellen
+20215;Wilhelm-Kress-Platz
+20233;Gaslos 3
+20234;Sebastian-Platz
+20222;Bossigasse 18-22
+20223;Erlaaer Straße 131-133
+20224;Angeligasse 78-80
+20220;Rahmenvertrag WW
+20230;Gaslos 2
+20231;Kirchhoff
+20232a;Levasseur 5
+20232b;Canavese 9-15
+20232c;Canavese 6-8
+24001;Verrechnung Graf
+24002;Josef-Endlweber-Gasse 3-5
+24003;Thürnlhofstraße 21-23
+24004;Alliogasse 21
+24005;Deutschorden 27-35
+24006;Chrobakgasse 3-5
+24008;Hochwassergasse 60
+24009;Prager Straße 92-96
+24010;Jägerhausstraße
+24011;Erlaaer Straße 123
+24012;Erzherzog-Karl-Straße 65-79
+24013;Kleingasse 6-18
+24014;Mexikoplatz 25
+24015;Heiligenstädter Straße 166-168
+24016;Krottenbachstraße 40 und 42-46
+24017;Hockegasse 9
+25001;Elisabethallee 79
+25002;Am Rosenberg 1
+25003;Pfeilgasse 47-49
+25004;Gladbeckstraße 3
+25005;Treustraße 61-69
+25006;Freiheitsplatz 1
+25007;
+25008;Mühlschüttelgasse 37
+25009;Pilgerimgasse 4-6
+25010;Hütteldorfer Straße 268-274
+25011;Brigittaplatz 1-2 TGA GU
+26001;Michaelerstraße 30
