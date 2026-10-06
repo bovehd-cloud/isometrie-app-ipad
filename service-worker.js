@@ -1,4 +1,5 @@
-const CACHE_NAME='isometrie-app-shell-v2';
+const CACHE_NAME='isometrie-app-shell-v3';
+const OFFLINE_START_URL=new URL('./index.html',self.registration.scope).href;
 
 // Die Kern-Dateien müssen vollständig vorhanden sein, damit die App auch ohne
 // Verbindung starten kann. Zusätzliche Medien werden danach einzeln versucht,
@@ -47,7 +48,7 @@ self.addEventListener('fetch',event=>{
   }).catch(async()=>{
     const cached=await caches.match(event.request,{ignoreSearch:true});
     if(cached)return cached;
-    if(event.request.mode==='navigate')return caches.match('./index.html');
+    if(event.request.mode==='navigate')return caches.match(OFFLINE_START_URL);
     throw new Error('Offline-Datei nicht im App-Cache vorhanden.');
   }));
 });

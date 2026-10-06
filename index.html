@@ -948,10 +948,10 @@ function isLightColor(hex){
   const color=normalizeDiversColor(hex),value=parseInt(color.slice(1),16),r=value>>16,g=value>>8&255,b=value&255;
   return (r*299+g*587+b*114)/1000>210;
 }
-function showTransientHint(message){
+function showTransientHint(message,duration=1600){
   hint.textContent=message;
   if(hintNoticeTimer)clearTimeout(hintNoticeTimer);
-  hintNoticeTimer=setTimeout(()=>{hintNoticeTimer=null;updateButtons();},1600);
+  hintNoticeTimer=setTimeout(()=>{hintNoticeTimer=null;updateButtons();},duration);
 }
 function normalizeProjectInfo(info={}){return {projekt:typeof info?.projekt==='string'?info.projekt:'',montage:typeof info?.montage==='string'?info.montage:'',montageGlobal:typeof info?.montageGlobal==='boolean'?info.montageGlobal:true,stiege:typeof info?.stiege==='string'?info.stiege:'',geschoss:typeof info?.geschoss==='string'?info.geschoss:'',stiegeGlobal:typeof info?.stiegeGlobal==='boolean'?info.stiegeGlobal:true,geschossGlobal:typeof info?.geschossGlobal==='boolean'?info.geschossGlobal:false,datum:typeof info?.datum==='string'?info.datum:'',leistungszeitraum:typeof info?.leistungszeitraum==='string'?info.leistungszeitraum:'',leistungszeitraumGlobal:typeof info?.leistungszeitraumGlobal==='boolean'?info.leistungszeitraumGlobal:true};}
 function parseProjectList(text){
@@ -6860,7 +6860,7 @@ if('serviceWorker' in navigator){
   const announceOfflineReady=()=>{
     if(sessionStorage.getItem(offlineReadyKey))return;
     sessionStorage.setItem(offlineReadyKey,'1');
-    showTransientHint('Offline bereit – die App startet auch ohne Internet.');
+    showTransientHint('Offline bereit – die App startet auch ohne Internet.',6000);
   };
   navigator.serviceWorker.addEventListener('message',event=>{
     if(event.data?.type==='ISOMETRIE_OFFLINE_READY')announceOfflineReady();
