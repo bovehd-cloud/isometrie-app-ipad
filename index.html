@@ -373,7 +373,7 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
 <div id="app">
   <div id="toolbar">
     <div class="app-brand" aria-label="Isometrie-App">
-      <span class="app-brand-mark"><img class="app-brand-logo-light" src="app-icon-192.png" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="app-icon-192.png" alt="" aria-hidden="true"></span>
+      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=2" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=2" alt="" aria-hidden="true"></span>
       <div><strong>Isometrie-App</strong><small>Isometrien zeichnen</small></div>
     </div>
     <div class="history-controls" role="group" aria-label="Bearbeitungsschritte">
@@ -6856,7 +6856,18 @@ updateThemeToggle();
 renderSheetBar();updatePlanHeader();resize();setZoom(state.zoom);updateButtons();
 restoreBundledProjectList().then(updatePlanHeader).catch(()=>{projectListEntries=[];updatePlanHeader();});
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(error=>{
+  const offlineReadyKey='isodraw.offlineReady.v2';
+  const announceOfflineReady=()=>{
+    if(sessionStorage.getItem(offlineReadyKey))return;
+    sessionStorage.setItem(offlineReadyKey,'1');
+    showTransientHint('Offline bereit – die App startet auch ohne Internet.');
+  };
+  navigator.serviceWorker.addEventListener('message',event=>{
+    if(event.data?.type==='ISOMETRIE_OFFLINE_READY')announceOfflineReady();
+  });
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').then(()=>{
+    navigator.serviceWorker.controller?.postMessage({type:'CHECK_ISOMETRIE_OFFLINE_READY'});
+  }).catch(error=>{
     console.warn('Offline-Installation konnte nicht vorbereitet werden.',error);
   }));
 }
