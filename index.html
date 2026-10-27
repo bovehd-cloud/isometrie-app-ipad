@@ -373,7 +373,7 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
 <div id="app">
   <div id="toolbar">
     <div class="app-brand" aria-label="Isometrie-App">
-      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=5" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=5" alt="" aria-hidden="true"></span>
+      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=6" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=6" alt="" aria-hidden="true"></span>
       <div><strong>Isometrie-App</strong><small>Isometrien zeichnen</small></div>
     </div>
     <div class="history-controls" role="group" aria-label="Bearbeitungsschritte">
@@ -1213,17 +1213,22 @@ function sheetPdfDimensions(sheet=activeSheet()){
   return normalizeSheetOrientation(sheet?.orientation)==='portrait'?[297/25.4*72,420/25.4*72]:[420/25.4*72,297/25.4*72];
 }
 function currentPlanScale(){return Number.isFinite(state.renderPlanScale)?state.renderPlanScale:normalizePlanScale(activeSheet()?.planScale);}
-const FALLBACK_WORLD_PAPER_WIDTH=1200;
+// Feste A3-Weltkoordinaten: Diese Werte gehören zum Dokument, niemals zum
+// jeweiligen Bildschirm. Damit ist ein Rasterpunkt in einer Projektdatei auf
+// PC, Tablet und Laptop exakt derselbe Punkt.
+const CANONICAL_WORLD_PAPER_WIDTH=1200;
+const FALLBACK_WORLD_PAPER_WIDTH=CANONICAL_WORLD_PAPER_WIDTH;
 function validWorldLayout(value){
   return Number.isFinite(value?.worldWidth)&&value.worldWidth>0&&Number.isFinite(value?.referencePlanScale)&&value.referencePlanScale>0&&Number.isFinite(value?.uOrigin)&&Number.isFinite(value?.vOrigin);
 }
-function sheetWorldLayout(sheet=activeSheet(),displayWidth=paper.clientWidth){
+function canonicalWorldLayout(){
+  return {worldWidth:CANONICAL_WORLD_PAPER_WIDTH,referencePlanScale:1,uOrigin:-CANONICAL_WORLD_PAPER_WIDTH,vOrigin:-CANONICAL_WORLD_PAPER_WIDTH+CANONICAL_WORLD_PAPER_WIDTH*GRID_SLOPE};
+}
+function sheetWorldLayout(sheet=activeSheet()){
   if(validWorldLayout(sheet?.worldLayout))return sheet.worldLayout;
-  // Ältere Projekte enthielten noch keine feste Zeichenfläche. Beim ersten
-  // Öffnen wird ihre aktuelle Geometrie einmalig übernommen und anschließend
-  // mit dem Blatt gespeichert – spätere Gerätewechsel bleiben deckungsgleich.
-  const referencePlanScale=normalizePlanScale(sheet?.planScale),width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH);
-  const layout={worldWidth:width/referencePlanScale,referencePlanScale,uOrigin:-width,vOrigin:-width+width*GRID_SLOPE};
+  // Projekte aus älteren Versionen bekommen beim ersten Laden dieselbe feste
+  // A3-Basis wie neue Blätter. Die Fenstergröße wird bewusst nicht verwendet.
+  const layout=canonicalWorldLayout();
   if(sheet)sheet.worldLayout=layout;
   return layout;
 }
@@ -1246,7 +1251,7 @@ function normalizeFormFactorStrokeWidth(value){
   return FORM_FACTOR_STROKE_WIDTH_STEPS.reduce((closest,candidate)=>Math.abs(candidate-numeric)<Math.abs(closest-numeric)?candidate:closest,2);
 }
 function currentFormFactorStrokeWidth(){return Number.isFinite(state.renderFormFactorStrokeWidth)?state.renderFormFactorStrokeWidth:normalizeFormFactorStrokeWidth(activeSheet()?.formFactorStrokeWidth);}
-function createSheet(name='Blatt 1'){return {id:createId(),name,info:normalizeSheetInfo(),orientation:'landscape',planScale:1,worldLayout:null,formFactorScale:1.2,formFactorStrokeWidth:2,strokes:[],symbols:[],insulationMarkers:[],wastewaterBends:[],softConnections:[],openings:[],freehandStrokes:[],texts:[],dimensions:[],undo:[],redo:[]};}
+function createSheet(name='Blatt 1'){return {id:createId(),name,info:normalizeSheetInfo(),orientation:'landscape',planScale:1,worldLayout:canonicalWorldLayout(),formFactorScale:1.2,formFactorStrokeWidth:2,strokes:[],symbols:[],insulationMarkers:[],wastewaterBends:[],softConnections:[],openings:[],freehandStrokes:[],texts:[],dimensions:[],undo:[],redo:[]};}
 function activeSheet(){return state.sheets.find(sheet=>sheet.id===state.activeSheetId)||null;}
 function ensureSheetModel(){
   if(!Array.isArray(state.sheets)||!state.sheets.length){
@@ -1725,7 +1730,10 @@ function projectSnapshot(){
     customSymbols:cloneJson(state.customSymbols),
     sheets:state.sheets.map(sheet=>({id:sheet.id,name:sheet.name,info:normalizeSheetInfo(sheet.info),orientation:normalizeSheetOrientation(sheet.orientation),planScale:normalizePlanScale(sheet.planScale),worldLayout:validWorldLayout(sheet.worldLayout)?{...sheet.worldLayout}:null,formFactorScale:normalizeFormFactorScale(sheet.formFactorScale),formFactorStrokeWidth:normalizeFormFactorStrokeWidth(sheet.formFactorStrokeWidth),strokes:sheet.strokes,symbols:sheet.symbols,insulationMarkers:sheet.insulationMarkers||[],wastewaterBends:sheet.wastewaterBends||[],softConnections:sheet.softConnections||[],openings:sheet.openings||[],freehandStrokes:sheet.freehandStrokes,texts:sheet.texts.map(text=>({...text,direction:normalizeTextDirection(text.direction)})),dimensions:sheet.dimensions})),
     activeSheetId:state.activeSheetId,
-    settings:{grid:state.grid,free:state.free,medium:state.medium,diversColor:normalizeDiversColor(state.diversColor),dn:state.dn,lineStyle:state.lineStyle,textDirection:state.textDirection,textFontSize:state.textFontSize,dimensionFontSize:state.dimensionFontSize,activeSymbol:state.activeSymbol,activeShape:state.activeShape,viewMode:state.viewMode}
+    // Der Ansichtszoom gehört zum Projekt. So wird ein Projekt beim Öffnen auf
+    // einem anderen Gerät mit derselben Rasterdichte dargestellt; die Pan-Position
+    // bleibt dagegen gerätebezogen und wird bewusst nicht übertragen.
+    settings:{grid:state.grid,free:state.free,medium:state.medium,diversColor:normalizeDiversColor(state.diversColor),dn:state.dn,lineStyle:state.lineStyle,textDirection:state.textDirection,textFontSize:state.textFontSize,dimensionFontSize:state.dimensionFontSize,activeSymbol:state.activeSymbol,activeShape:state.activeShape,viewMode:state.viewMode,viewZoom:normalizeViewZoom(state.zoom)}
   };
 }
 function validPoint(point){return point&&Number.isFinite(point.x)&&Number.isFinite(point.y);}
@@ -1778,6 +1786,10 @@ function applyProject(project){
   state.activeSymbol=typeof settings.activeSymbol==='string'?settings.activeSymbol:'ballValve';
   state.activeShape=['circle','ellipse','rectangle','square'].includes(settings.activeShape)?settings.activeShape:'circle';
   state.viewMode=settings.viewMode==='isolation'?'isolation':'montage';
+  // Ältere Projektdateien hatten keinen Ansichtszoom. Sie öffnen daher
+  // einheitlich in der Standardansicht statt mit einem lokalen Restzoom.
+  state.zoom=Number.isFinite(Number(settings.viewZoom))?normalizeViewZoom(settings.viewZoom):1;
+  state.viewPan={x:0,y:0};
   state.tool='draw';state.current=null;state.currentFreehand=null;state.shapeDraft=null;state.textDraft=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.dimensionEditorSession=null;state.cornerPick=null;state.breakthroughDraft=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragWastewaterBend=null;state.wastewaterBendPreview=null;
   state.undo=[];state.redo=[];
   clearAllSelections();migrateVerticalDimensions();closeTextEditor();closeDimensionEditor();closeSymbolMenu();closeExportMenu();closeQuantityOverview();
