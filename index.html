@@ -234,10 +234,10 @@ button:disabled{opacity:1;background:#f1f4f7;border-color:#e0e7ef;color:#aab6c4}
 #insertPicker.quick-symbol-menu-open #symbolMenuBtn{display:none!important}
 #insertPicker.quick-symbol-menu-open #symbolMenu{position:static;display:block!important;visibility:visible;min-width:220px;margin:0}
 #selectionActions{display:none!important}
-#toggleInsulationVisibilityBtn,#toggleInsulationExistingStyleBtn,#toggleReducerSuppressionBtn,#rotateReducerBtn{display:grid;place-items:center;width:33px;height:33px;padding:0;border-color:#c9d7e8;color:#152235}
-#toggleInsulationVisibilityBtn[hidden],#toggleReducerSuppressionBtn[hidden],#rotateReducerBtn[hidden],#insulationExistingPicker[hidden]{display:none!important}
-#toggleInsulationVisibilityBtn svg,#toggleInsulationExistingStyleBtn svg,#toggleReducerSuppressionBtn svg,#rotateReducerBtn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-#toggleInsulationVisibilityBtn.active,#toggleInsulationExistingStyleBtn.active,#toggleReducerSuppressionBtn.active,#rotateReducerBtn.active{background:var(--rt-active-bg);border-color:var(--rt-active-line);color:var(--rt-active-ink);box-shadow:0 0 0 2px rgba(74,139,255,.18)}
+#toggleInsulationVisibilityBtn,#toggleInsulationExistingStyleBtn,#toggleReducerSuppressionBtn,#rotateReducerBtn,#toggleReductionVisibilityBtn{display:grid;place-items:center;width:33px;height:33px;padding:0;border-color:#c9d7e8;color:#152235}
+#toggleInsulationVisibilityBtn[hidden],#toggleReducerSuppressionBtn[hidden],#rotateReducerBtn[hidden],#toggleReductionVisibilityBtn[hidden],#insulationExistingPicker[hidden]{display:none!important}
+#toggleInsulationVisibilityBtn svg,#toggleInsulationExistingStyleBtn svg,#toggleReducerSuppressionBtn svg,#rotateReducerBtn svg,#toggleReductionVisibilityBtn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#toggleInsulationVisibilityBtn.active,#toggleInsulationExistingStyleBtn.active,#toggleReducerSuppressionBtn.active,#rotateReducerBtn.active,#toggleReductionVisibilityBtn.active{background:var(--rt-active-bg);border-color:var(--rt-active-line);color:var(--rt-active-ink);box-shadow:0 0 0 2px rgba(74,139,255,.18)}
 #insulationExistingPicker{display:flex;align-items:center}
 #insulationExistingPicker #toggleInsulationExistingStyleBtn{border-radius:6px 0 0 6px}
 #toggleInsulationExistingStyleMenuBtn{display:grid;place-items:center;width:16px;height:33px;padding:0;border-left:0;border-radius:0 6px 6px 0;color:#152235}
@@ -308,8 +308,8 @@ body.dark-mode .medium-swatch.active{box-shadow:0 0 0 2px #202833,0 0 0 4px #6ea
 body.dark-mode #paper{background:#fff;box-shadow:0 1px 5px #0008}
 body.dark-mode #hint{color:#aebbcc}
 body.dark-mode .symbol-menu,body.dark-mode #quantityPanel,body.dark-mode #textEditor,body.dark-mode #dimensionEditor,body.dark-mode .app-dialog-card{background:#202833!important;border-color:#3a4656!important;color:#e7edf5!important;box-shadow:0 8px 20px #0007}
-body.dark-mode #toggleInsulationVisibilityBtn,body.dark-mode #toggleInsulationExistingStyleBtn,body.dark-mode #toggleReducerSuppressionBtn,body.dark-mode #rotateReducerBtn{background:#252f3b!important;border-color:#3a4656!important;color:#e7edf5!important}
-body.dark-mode #toggleInsulationVisibilityBtn.active,body.dark-mode #toggleInsulationExistingStyleBtn.active,body.dark-mode #toggleReducerSuppressionBtn.active,body.dark-mode #rotateReducerBtn.active{background:#203a60!important;border-color:#6ea4ff!important;color:#9bc1ff!important;box-shadow:0 0 0 2px rgba(110,164,255,.18)!important}
+body.dark-mode #toggleInsulationVisibilityBtn,body.dark-mode #toggleInsulationExistingStyleBtn,body.dark-mode #toggleReducerSuppressionBtn,body.dark-mode #rotateReducerBtn,body.dark-mode #toggleReductionVisibilityBtn{background:#252f3b!important;border-color:#3a4656!important;color:#e7edf5!important}
+body.dark-mode #toggleInsulationVisibilityBtn.active,body.dark-mode #toggleInsulationExistingStyleBtn.active,body.dark-mode #toggleReducerSuppressionBtn.active,body.dark-mode #rotateReducerBtn.active,body.dark-mode #toggleReductionVisibilityBtn.active{background:#203a60!important;border-color:#6ea4ff!important;color:#9bc1ff!important;box-shadow:0 0 0 2px rgba(110,164,255,.18)!important}
 body.dark-mode #layerOrderBtn{background:#252f3b!important;border-color:#3a4656!important;color:#e7edf5!important}
 body.dark-mode #quickMenu{background:#202833;border-color:#3a4656;box-shadow:0 8px 20px #0007}
 body.dark-mode .quick-menu-action,body.dark-mode #quickDnSelect{background:#252f3b;border-color:#3a4656;color:#e7edf5}
@@ -373,7 +373,7 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
 <div id="app">
   <div id="toolbar">
     <div class="app-brand" aria-label="Isometrie-App">
-      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=2" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=2" alt="" aria-hidden="true"></span>
+      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=3" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=3" alt="" aria-hidden="true"></span>
       <div><strong>Isometrie-App</strong><small>Isometrien zeichnen</small></div>
     </div>
     <div class="history-controls" role="group" aria-label="Bearbeitungsschritte">
@@ -440,8 +440,18 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
         </div>
           </div>
         </div>
+        <div class="menu-subpicker" id="shapePicker">
+          <button id="shapeMenuBtn" class="symbol-option" type="button" aria-expanded="false">Formen ▸</button>
+          <div id="shapeMenu" class="symbol-menu" hidden>
+            <button class="symbol-option" type="button" data-shape="circle">Kreis</button>
+            <button class="symbol-option" type="button" data-shape="ellipse">Ellipse</button>
+            <button class="symbol-option" type="button" data-shape="rectangle">Rechteck</button>
+            <button class="symbol-option" type="button" data-shape="square">Quadrat</button>
+          </div>
+        </div>
         <button id="textBtn" class="symbol-option">Text</button>
         <button id="dimensionBtn" class="symbol-option">Bemaßung</button>
+        <button id="splitStrokeBtn" class="symbol-option" type="button">Leitung am Eckpunkt trennen</button>
       </div>
     </div>
     <button id="selectBtn">⌖ Auswahl</button>
@@ -489,6 +499,7 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
     <button id="toggleInsulationVisibilityBtn" type="button" hidden title="In Isolierung ausblenden" aria-label="In Isolierung ausblenden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.1A10.7 10.7 0 0 1 12 5c5.5 0 9.5 5.2 9.5 7s-1.5 3.5-3.8 5M6.2 6.2C3.8 8 2.5 10.4 2.5 12c0 1.8 4 7 9.5 7 1.2 0 2.3-.2 3.3-.6"/></svg></button>
     <button id="toggleReducerSuppressionBtn" type="button" hidden title="Reduzierung an dieser Leitung deaktivieren" aria-label="Reduzierung an dieser Leitung deaktivieren"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18 12 6l7 12Z"/><path d="M4 4l16 16"/></svg></button>
     <button id="rotateReducerBtn" type="button" hidden title="Reduzierung drehen" aria-label="Reduzierung drehen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17 12 6l6 11Z"/><path d="M18.5 5.5v4h-4"/><path d="M18.5 9.5a7 7 0 1 0 1 5"/></svg></button>
+    <button id="toggleReductionVisibilityBtn" type="button" hidden title="Reduzierung ausblenden" aria-label="Reduzierung ausblenden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.1A10.7 10.7 0 0 1 12 5c5.5 0 9.5 5.2 9.5 7s-1.5 3.5-3.8 5M6.2 6.2C3.8 8 2.5 10.4 2.5 12c0 1.8 4 7 9.5 7 1.2 0 2.3-.2 3.3-.6"/></svg></button>
     <div id="layerOrderPicker" class="symbol-picker" hidden>
       <button id="layerOrderBtn" type="button" title="Ebenenreihenfolge" aria-label="Ebenenreihenfolge" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h10M5 12h14M5 17h10"/><path d="m15 5 3 2-3 2M19 10l3 2-3 2M15 15l3 2-3 2"/></svg></button>
       <div id="layerOrderMenu" class="symbol-menu" hidden role="menu" aria-label="Ebenenreihenfolge">
@@ -734,6 +745,7 @@ const cutSelectionBtn=document.getElementById('cutSelectionBtn');
 const duplicateSelectionBtn=document.getElementById('duplicateSelectionBtn');
 const pasteSelectionBtn=document.getElementById('pasteSelectionBtn');
 const rotateSelectionBtn=document.getElementById('rotateSelectionBtn');
+const splitStrokeBtn=document.getElementById('splitStrokeBtn');
 const insulationExistingPicker=document.getElementById('insulationExistingPicker');
 const toggleInsulationExistingStyleBtn=document.getElementById('toggleInsulationExistingStyleBtn');
 const toggleInsulationExistingStyleMenuBtn=document.getElementById('toggleInsulationExistingStyleMenuBtn');
@@ -742,6 +754,7 @@ const selectAllVisibleStrokesBtn=document.getElementById('selectAllVisibleStroke
 const toggleInsulationVisibilityBtn=document.getElementById('toggleInsulationVisibilityBtn');
 const toggleReducerSuppressionBtn=document.getElementById('toggleReducerSuppressionBtn');
 const rotateReducerBtn=document.getElementById('rotateReducerBtn');
+const toggleReductionVisibilityBtn=document.getElementById('toggleReductionVisibilityBtn');
 const layerOrderPicker=document.getElementById('layerOrderPicker');
 const layerOrderBtn=document.getElementById('layerOrderBtn');
 const layerOrderMenu=document.getElementById('layerOrderMenu');
@@ -774,6 +787,9 @@ const insertMenu=document.getElementById('insertMenu');
 const symbolPicker=document.getElementById('symbolPicker');
 const symbolMenuBtn=document.getElementById('symbolMenuBtn');
 const symbolMenu=document.getElementById('symbolMenu');
+const shapePicker=document.getElementById('shapePicker');
+const shapeMenuBtn=document.getElementById('shapeMenuBtn');
+const shapeMenu=document.getElementById('shapeMenu');
 const chooseSymbolFolderBtn=document.getElementById('chooseSymbolFolderBtn');
 const refreshSymbolFolderBtn=document.getElementById('refreshSymbolFolderBtn');
 const symbolFolderHint=document.getElementById('symbolFolderHint');
@@ -888,7 +904,13 @@ const TEMPLATE_DN_MATRIX_MAX_LENGTHS=31;
 const TEMPLATE_MATERIAL_BLOCK_STARTS=[25,65,105,145,185,225];
 const TEMPLATE_MATERIAL_ROWS_PER_BLOCK=6;
 const TEMPLATE_ISOLATION_FACTOR_BLOCK_STARTS=[30,70,110,150,190,230];
+const TEMPLATE_V6_HEADER_BLOCK_STARTS=[1,43,85,127,168,209,250,291,332,373,414,455];
+const TEMPLATE_V6_DN_MATRIX_BLOCK_STARTS=[34,76,118,160,201,242,283,324,365,406,447,488];
+const TEMPLATE_V6_MATERIAL_BLOCK_STARTS=[26,68,110,152,193,234,275,316,357,398,439,480];
+const TEMPLATE_V6_ISOLATION_FACTOR_BLOCK_STARTS=[32,74,116,158,199,240,281,322,363,404,445,486];
+const TEMPLATE_V6_MATERIAL_ROWS_PER_BLOCK=7;
 const TEMPLATE_ISOLATION_FACTOR_COLUMNS=['AO','AP','AQ','AR','AS'];
+const TEMPLATE_V6_ISOLATION_FACTOR_COLUMNS=['AS','AT','AU','AV','AW'];
 const TEMPLATE_ISOLATION_FACTOR_ROWS={bow:1,tee:2,endstelle:3,aufdopplung:4,armature:5};
 const quantityExpandedGroups=new Set();
 const formFactorExpandedGroups=new Set();
@@ -921,10 +943,10 @@ let recentArmatures=[];
 const symbolLibraryOpenCategories=new Set();
 
 let state={
-  grid:true, free:false, zoom:1,tool:'draw', activeSymbol:'ballValve', medium:'Bestand', diversColor:'#7c3aed', dn:32,lineStyle:'solid',textDirection:'rising',textFontSize:16,dimensionFontSize:14,
+  grid:true, free:false, zoom:1,tool:'draw', activeSymbol:'ballValve',activeShape:'circle', medium:'Bestand', diversColor:'#7c3aed', dn:32,lineStyle:'solid',textDirection:'rising',textFontSize:16,dimensionFontSize:14,
   strokes:[], symbols:[], insulationMarkers:[], wastewaterBends:[], softConnections:[], freehandStrokes:[], texts:[], dimensions:[], selected:[], selectedSymbols:[], selectedInsulationMarkers:[], selectedWastewaterBends:[], selectedSoftConnections:[], selectedFreehand:[], selectedTexts:[], selectedDimensions:[],
   sheets:[],activeSheetId:null,sheetBarCollapsed:false,viewMode:'montage',projectInfo:{projekt:'',montage:'',montageGlobal:true,stiege:'',geschoss:'',stiegeGlobal:true,geschossGlobal:false,datum:'',leistungszeitraum:'',leistungszeitraumGlobal:true},customSymbols:{version:1,symbols:{}},activeCustomSymbolId:null,
-  undo:[], redo:[], projectUndo:[],projectRedo:[],clipboard:null,pasteDraft:null,renderPlanScale:null,renderFormFactorScale:null,renderFormFactorStrokeWidth:null,viewPan:{x:0,y:0},viewPanDrag:null,viewPanMiddleClick:null,current:null, currentFreehand:null,textDraft:null,textLongPress:null,dimensionDraft:null,dimensionPreviewPoint:null,dimensionEditorSession:null,cornerPick:null,breakthroughDraft:null,dragBreakthrough:null,dragSelection:null,dragStrokeEndpoint:null,armatureDraft:null,dragInsulationMarker:null,dragReduction:null,lassoDraft:null,selectedReduction:null,wastewaterBendType:'90',wastewaterBendMode:'replace',wastewaterBendPreview:null,dragWastewaterBend:null,softConnectionDraft:null,softConnectionPreview:null
+  undo:[], redo:[], projectUndo:[],projectRedo:[],clipboard:null,pasteDraft:null,renderPlanScale:null,renderWorldLayout:null,renderFormFactorScale:null,renderFormFactorStrokeWidth:null,viewPan:{x:0,y:0},viewPanDrag:null,viewPanMiddleClick:null,current:null, currentFreehand:null,shapeDraft:null,textDraft:null,textLongPress:null,dimensionDraft:null,dimensionPreviewPoint:null,dimensionEditorSession:null,cornerPick:null,splitStrokeTargetIds:[],breakthroughDraft:null,dragBreakthrough:null,dragSelection:null,dragStrokeEndpoint:null,armatureDraft:null,dragInsulationMarker:null,dragReduction:null,lassoDraft:null,selectedReduction:null,wastewaterBendType:'90',wastewaterBendMode:'replace',wastewaterBendPreview:null,dragWastewaterBend:null,softConnectionDraft:null,softConnectionPreview:null
 };
 function getDisplayStrokeColor(stroke,mode=state.viewMode){
   if(stroke?.medium==='Bestandsisolierung Vorlauf')return '#b51515';
@@ -1191,6 +1213,29 @@ function sheetPdfDimensions(sheet=activeSheet()){
   return normalizeSheetOrientation(sheet?.orientation)==='portrait'?[297/25.4*72,420/25.4*72]:[420/25.4*72,297/25.4*72];
 }
 function currentPlanScale(){return Number.isFinite(state.renderPlanScale)?state.renderPlanScale:normalizePlanScale(activeSheet()?.planScale);}
+const FALLBACK_WORLD_PAPER_WIDTH=1200;
+function validWorldLayout(value){
+  return Number.isFinite(value?.worldWidth)&&value.worldWidth>0&&Number.isFinite(value?.referencePlanScale)&&value.referencePlanScale>0&&Number.isFinite(value?.uOrigin)&&Number.isFinite(value?.vOrigin);
+}
+function sheetWorldLayout(sheet=activeSheet(),displayWidth=paper.clientWidth){
+  if(validWorldLayout(sheet?.worldLayout))return sheet.worldLayout;
+  // Ältere Projekte enthielten noch keine feste Zeichenfläche. Beim ersten
+  // Öffnen wird ihre aktuelle Geometrie einmalig übernommen und anschließend
+  // mit dem Blatt gespeichert – spätere Gerätewechsel bleiben deckungsgleich.
+  const referencePlanScale=normalizePlanScale(sheet?.planScale),width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH);
+  const layout={worldWidth:width/referencePlanScale,referencePlanScale,uOrigin:-width,vOrigin:-width+width*GRID_SLOPE};
+  if(sheet)sheet.worldLayout=layout;
+  return layout;
+}
+function currentWorldRenderScale(displayWidth=paper.clientWidth){
+  const layout=validWorldLayout(state.renderWorldLayout)?state.renderWorldLayout:sheetWorldLayout(activeSheet(),displayWidth);
+  const width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH);
+  return width/layout.worldWidth*(currentPlanScale()/layout.referencePlanScale);
+}
+function sheetWorldRenderScale(sheet,displayWidth){
+  const layout=sheetWorldLayout(sheet,displayWidth),width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH),planScale=normalizePlanScale(sheet?.planScale);
+  return width/layout.worldWidth*(planScale/layout.referencePlanScale);
+}
 function normalizeFormFactorScale(value){
   const numeric=Number(value);
   return FORM_FACTOR_SCALE_STEPS.reduce((closest,candidate)=>Math.abs(candidate-numeric)<Math.abs(closest-numeric)?candidate:closest,1.2);
@@ -1201,7 +1246,7 @@ function normalizeFormFactorStrokeWidth(value){
   return FORM_FACTOR_STROKE_WIDTH_STEPS.reduce((closest,candidate)=>Math.abs(candidate-numeric)<Math.abs(closest-numeric)?candidate:closest,2);
 }
 function currentFormFactorStrokeWidth(){return Number.isFinite(state.renderFormFactorStrokeWidth)?state.renderFormFactorStrokeWidth:normalizeFormFactorStrokeWidth(activeSheet()?.formFactorStrokeWidth);}
-function createSheet(name='Blatt 1'){return {id:createId(),name,info:normalizeSheetInfo(),orientation:'landscape',planScale:1,formFactorScale:1.2,formFactorStrokeWidth:2,strokes:[],symbols:[],insulationMarkers:[],wastewaterBends:[],softConnections:[],openings:[],freehandStrokes:[],texts:[],dimensions:[],undo:[],redo:[]};}
+function createSheet(name='Blatt 1'){return {id:createId(),name,info:normalizeSheetInfo(),orientation:'landscape',planScale:1,worldLayout:null,formFactorScale:1.2,formFactorStrokeWidth:2,strokes:[],symbols:[],insulationMarkers:[],wastewaterBends:[],softConnections:[],openings:[],freehandStrokes:[],texts:[],dimensions:[],undo:[],redo:[]};}
 function activeSheet(){return state.sheets.find(sheet=>sheet.id===state.activeSheetId)||null;}
 function ensureSheetModel(){
   if(!Array.isArray(state.sheets)||!state.sheets.length){
@@ -1325,7 +1370,7 @@ function setHeaderScope(key,isGlobal){
 function activateSheet(sheetId,{redrawSheet=true}={}){
   syncActiveSheet();ensureSheetModel();const sheet=state.sheets.find(candidate=>candidate.id===sheetId);if(!sheet)return;
   state.activeSheetId=sheet.id;state.strokes=sheet.strokes;state.symbols=sheet.symbols;state.insulationMarkers=Array.isArray(sheet.insulationMarkers)?sheet.insulationMarkers:[];state.wastewaterBends=Array.isArray(sheet.wastewaterBends)?sheet.wastewaterBends:[];state.softConnections=Array.isArray(sheet.softConnections)?sheet.softConnections:[];state.freehandStrokes=sheet.freehandStrokes;state.texts=sheet.texts;state.dimensions=sheet.dimensions;state.undo=sheet.undo||[];state.redo=sheet.redo||[];
-  state.current=null;state.currentFreehand=null;state.textDraft=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.cornerPick=null;state.breakthroughDraft=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragInsulationMarker=null;state.dragReduction=null;state.dragWastewaterBend=null;state.wastewaterBendPreview=null;clearAllSelections();renderSheetBar();updatePlanHeader();updateButtons();resize();
+  state.current=null;state.currentFreehand=null;state.shapeDraft=null;state.textDraft=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.cornerPick=null;state.breakthroughDraft=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragInsulationMarker=null;state.dragReduction=null;state.dragWastewaterBend=null;state.wastewaterBendPreview=null;clearAllSelections();renderSheetBar();updatePlanHeader();updateButtons();resize();
   if(redrawSheet)redraw();
 }
 function addSheet(){syncActiveSheet();const sheet=createSheet(`Blatt ${state.sheets.length+1}`);state.sheets.push(sheet);activateSheet(sheet.id);}
@@ -1359,7 +1404,7 @@ function duplicateSheetData(source){
   const dimensions=cloneItems(source.dimensions,new Map());
   [symbols,insulationMarkers,wastewaterBends,softConnections,freehandStrokes,texts,dimensions].forEach(items=>items.forEach(item=>remapSheetCloneReferences(item,strokeIds,symbolIds)));
   return {
-    id:createId(),name:nextDuplicateSheetName(source.name),info:normalizeSheetInfo(cloneForSheetDuplicate(source.info)),orientation:normalizeSheetOrientation(source.orientation),planScale:normalizePlanScale(source.planScale),formFactorScale:normalizeFormFactorScale(source.formFactorScale),formFactorStrokeWidth:normalizeFormFactorStrokeWidth(source.formFactorStrokeWidth),
+    id:createId(),name:nextDuplicateSheetName(source.name),info:normalizeSheetInfo(cloneForSheetDuplicate(source.info)),orientation:normalizeSheetOrientation(source.orientation),planScale:normalizePlanScale(source.planScale),worldLayout:validWorldLayout(source.worldLayout)?{...source.worldLayout}:null,formFactorScale:normalizeFormFactorScale(source.formFactorScale),formFactorStrokeWidth:normalizeFormFactorStrokeWidth(source.formFactorStrokeWidth),
     strokes,symbols,insulationMarkers,wastewaterBends,softConnections,
     openings:symbols.filter(symbol=>symbol.type==='breakthrough'),freehandStrokes,texts,dimensions,undo:[],redo:[]
   };
@@ -1557,8 +1602,8 @@ function drawGrid(){
   const w=paper.clientWidth,h=paper.clientHeight;
   g.clearRect(0,0,w,h);
   if(!state.grid)return;
-  const geometry=visibleGridGeometry(),{planScale,worldWidth,worldHeight,uOrigin,vOrigin,spacing}=geometry,t=GRID_SLOPE;
-  g.save();g.scale(planScale,planScale);g.strokeStyle=darkModeEnabled?'rgba(100,100,100,.28)':'rgba(100,100,100,.20)';g.lineWidth=.7;
+  const geometry=visibleGridGeometry(),{renderScale,worldWidth,worldHeight,uOrigin,vOrigin,spacing}=geometry,t=GRID_SLOPE;
+  g.save();g.scale(renderScale,renderScale);g.strokeStyle=darkModeEnabled?'rgba(100,100,100,.28)':'rgba(100,100,100,.20)';g.lineWidth=.7;
   for(let u=uOrigin;u<worldHeight+worldWidth;u+=spacing){
     g.beginPath();g.moveTo(0,u);g.lineTo(worldWidth,u+worldWidth*t);g.stroke();
   }
@@ -1678,9 +1723,9 @@ function projectSnapshot(){
     exportedAt:new Date().toISOString(),
     projectInfo:normalizeProjectInfo(state.projectInfo),
     customSymbols:cloneJson(state.customSymbols),
-    sheets:state.sheets.map(sheet=>({id:sheet.id,name:sheet.name,info:normalizeSheetInfo(sheet.info),orientation:normalizeSheetOrientation(sheet.orientation),planScale:normalizePlanScale(sheet.planScale),formFactorScale:normalizeFormFactorScale(sheet.formFactorScale),formFactorStrokeWidth:normalizeFormFactorStrokeWidth(sheet.formFactorStrokeWidth),strokes:sheet.strokes,symbols:sheet.symbols,insulationMarkers:sheet.insulationMarkers||[],wastewaterBends:sheet.wastewaterBends||[],softConnections:sheet.softConnections||[],openings:sheet.openings||[],freehandStrokes:sheet.freehandStrokes,texts:sheet.texts.map(text=>({...text,direction:normalizeTextDirection(text.direction)})),dimensions:sheet.dimensions})),
+    sheets:state.sheets.map(sheet=>({id:sheet.id,name:sheet.name,info:normalizeSheetInfo(sheet.info),orientation:normalizeSheetOrientation(sheet.orientation),planScale:normalizePlanScale(sheet.planScale),worldLayout:validWorldLayout(sheet.worldLayout)?{...sheet.worldLayout}:null,formFactorScale:normalizeFormFactorScale(sheet.formFactorScale),formFactorStrokeWidth:normalizeFormFactorStrokeWidth(sheet.formFactorStrokeWidth),strokes:sheet.strokes,symbols:sheet.symbols,insulationMarkers:sheet.insulationMarkers||[],wastewaterBends:sheet.wastewaterBends||[],softConnections:sheet.softConnections||[],openings:sheet.openings||[],freehandStrokes:sheet.freehandStrokes,texts:sheet.texts.map(text=>({...text,direction:normalizeTextDirection(text.direction)})),dimensions:sheet.dimensions})),
     activeSheetId:state.activeSheetId,
-    settings:{grid:state.grid,free:state.free,medium:state.medium,diversColor:normalizeDiversColor(state.diversColor),dn:state.dn,lineStyle:state.lineStyle,textDirection:state.textDirection,textFontSize:state.textFontSize,dimensionFontSize:state.dimensionFontSize,activeSymbol:state.activeSymbol,viewMode:state.viewMode}
+    settings:{grid:state.grid,free:state.free,medium:state.medium,diversColor:normalizeDiversColor(state.diversColor),dn:state.dn,lineStyle:state.lineStyle,textDirection:state.textDirection,textFontSize:state.textFontSize,dimensionFontSize:state.dimensionFontSize,activeSymbol:state.activeSymbol,activeShape:state.activeShape,viewMode:state.viewMode}
   };
 }
 function validPoint(point){return point&&Number.isFinite(point.x)&&Number.isFinite(point.y);}
@@ -1731,8 +1776,9 @@ function applyProject(project){
   state.textFontSize=Number.isFinite(Number(settings.textFontSize))?Number(settings.textFontSize):16;
   state.dimensionFontSize=Number.isFinite(Number(settings.dimensionFontSize))?Math.max(10,Math.min(32,Number(settings.dimensionFontSize))):14;
   state.activeSymbol=typeof settings.activeSymbol==='string'?settings.activeSymbol:'ballValve';
+  state.activeShape=['circle','ellipse','rectangle','square'].includes(settings.activeShape)?settings.activeShape:'circle';
   state.viewMode=settings.viewMode==='isolation'?'isolation':'montage';
-  state.tool='draw';state.current=null;state.currentFreehand=null;state.textDraft=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.dimensionEditorSession=null;state.cornerPick=null;state.breakthroughDraft=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragWastewaterBend=null;state.wastewaterBendPreview=null;
+  state.tool='draw';state.current=null;state.currentFreehand=null;state.shapeDraft=null;state.textDraft=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.dimensionEditorSession=null;state.cornerPick=null;state.breakthroughDraft=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragWastewaterBend=null;state.wastewaterBendPreview=null;
   state.undo=[];state.redo=[];
   clearAllSelections();migrateVerticalDimensions();closeTextEditor();closeDimensionEditor();closeSymbolMenu();closeExportMenu();closeQuantityOverview();
   renderSheetBar();updatePlanHeader();resize();updateButtons();persistDrawing();redraw();
@@ -1807,11 +1853,12 @@ function redraw(){
   syncActiveSheet();
   const w=paper.clientWidth,h=paper.clientHeight;
   c.clearRect(0,0,w,h);
-  c.save();c.scale(currentPlanScale(),currentPlanScale());
+  c.save();c.scale(currentWorldRenderScale(),currentWorldRenderScale());
   state.strokes.forEach(stroke=>{ensureCornerData(stroke);migrateLegacyMedium(stroke);});
   if(state.viewMode==='isolation')state.insulationMarkers.filter(marker=>marker.type==='aufdopplung').forEach(marker=>drawAufdopplungHalf(marker,false));
   drawLayeredDrawingItems(true);
   if(state.current)drawStroke(state.current,false);
+  if(state.shapeDraft)drawShape(state.shapeDraft,false);
   drawWastewaterBendPreview();
   state.softConnections.forEach(connection=>drawSoftConnection(connection,state.selectedSoftConnections.includes(connection.id)));
   drawJointRoundings();
@@ -1841,7 +1888,7 @@ function renderPngExport(target,scale,width,height){
     c.setTransform(scale,0,0,scale,0,0);
     c.clearRect(0,0,width,height);
     c.fillStyle='#fff';c.fillRect(0,0,width,height);
-    c.save();c.scale(currentPlanScale(),currentPlanScale());
+    c.save();const worldScale=currentWorldRenderScale(width);c.scale(worldScale,worldScale);
     state.strokes.forEach(stroke=>{ensureCornerData(stroke);migrateLegacyMedium(stroke);});
     if(state.viewMode==='isolation')state.insulationMarkers.filter(marker=>marker.type==='aufdopplung').forEach(marker=>drawAufdopplungHalf(marker,false));
     drawLayeredDrawingItems(false);
@@ -1900,22 +1947,22 @@ async function waitForSheetSymbolImages(){
 function renderSheetPngExport(target,scale,width,height,sheet,mode=state.viewMode){
   const original={
     strokes:state.strokes,symbols:state.symbols,insulationMarkers:state.insulationMarkers,wastewaterBends:state.wastewaterBends,softConnections:state.softConnections,freehandStrokes:state.freehandStrokes,texts:state.texts,dimensions:state.dimensions,
-    current:state.current,currentFreehand:state.currentFreehand,dimensionDraft:state.dimensionDraft,textDraft:state.textDraft,armatureDraft:state.armatureDraft,viewMode:state.viewMode,renderPlanScale:state.renderPlanScale,renderFormFactorScale:state.renderFormFactorScale,renderFormFactorStrokeWidth:state.renderFormFactorStrokeWidth
+    current:state.current,currentFreehand:state.currentFreehand,dimensionDraft:state.dimensionDraft,textDraft:state.textDraft,armatureDraft:state.armatureDraft,viewMode:state.viewMode,renderPlanScale:state.renderPlanScale,renderWorldLayout:state.renderWorldLayout,renderFormFactorScale:state.renderFormFactorScale,renderFormFactorStrokeWidth:state.renderFormFactorStrokeWidth
   };
   const source=JSON.parse(JSON.stringify({
     strokes:sheet.strokes||[],symbols:sheet.symbols||[],insulationMarkers:sheet.insulationMarkers||[],wastewaterBends:sheet.wastewaterBends||[],softConnections:sheet.softConnections||[],freehandStrokes:sheet.freehandStrokes||[],texts:sheet.texts||[],dimensions:sheet.dimensions||[]
   }));
   try{
     state.strokes=source.strokes;state.symbols=source.symbols;state.insulationMarkers=source.insulationMarkers;state.wastewaterBends=source.wastewaterBends;state.softConnections=source.softConnections;state.freehandStrokes=source.freehandStrokes;state.texts=source.texts;state.dimensions=source.dimensions;
-    state.current=null;state.currentFreehand=null;state.dimensionDraft=null;state.textDraft=null;state.armatureDraft=null;state.wastewaterBendPreview=null;state.viewMode=mode;state.renderPlanScale=normalizePlanScale(sheet.planScale);state.renderFormFactorScale=normalizeFormFactorScale(sheet.formFactorScale);state.renderFormFactorStrokeWidth=normalizeFormFactorStrokeWidth(sheet.formFactorStrokeWidth);
+    state.current=null;state.currentFreehand=null;state.shapeDraft=null;state.dimensionDraft=null;state.textDraft=null;state.armatureDraft=null;state.wastewaterBendPreview=null;state.viewMode=mode;state.renderPlanScale=normalizePlanScale(sheet.planScale);state.renderWorldLayout=sheetWorldLayout(sheet,width);state.renderFormFactorScale=normalizeFormFactorScale(sheet.formFactorScale);state.renderFormFactorStrokeWidth=normalizeFormFactorStrokeWidth(sheet.formFactorStrokeWidth);
     renderPngExport(target,scale,width,height);
   }finally{Object.assign(state,original);}
 }
-async function createSheetExportCanvas(sheet,mode=state.viewMode){
+async function createSheetExportCanvas(sheet,mode=state.viewMode,renderScale=2){
   const {width,height}=paperDimensionsForSheet(sheet);
   if(width<=0||height<=0)throw new Error('Zeichenfläche ist nicht verfügbar');
   await waitForSheetSymbolImages();
-  const scale=2,output=document.createElement('canvas');
+  const scale=Math.max(1,Number(renderScale)||2),output=document.createElement('canvas');
   output.width=Math.round(width*scale);output.height=Math.round(height*scale);
   renderSheetPngExport(output.getContext('2d'),scale,width,height,sheet,mode);
   return output;
@@ -2103,6 +2150,46 @@ async function unzipEntry(entry){
   return new Uint8Array(await new Response(new Blob([compressed]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
 }
 async function zipEntryText(archive,path){const entry=archive.entries.find(item=>item.name===path);if(!entry)throw new Error(`Vorlagendatei enthält „${path}“ nicht.`);return new TextDecoder().decode(await unzipEntry(entry));}
+function xmlAttribute(xml,name){return xml.match(new RegExp('\\b'+name.replace(':','\\:')+'="([^"]*)"'))?.[1]||'';}
+function ooxmlPath(sourcePath,target){
+  const parts=sourcePath.split('/').slice(0,-1);
+  String(target||'').split('/').forEach(part=>{if(!part||part==='.')return;if(part==='..')parts.pop();else parts.push(part);});
+  return parts.join('/');
+}
+function worksheetRelationshipsPath(worksheetPath){const parts=worksheetPath.split('/'),name=parts.pop();return [...parts,'_rels',name+'.rels'].join('/');}
+function drawingRelationshipsPath(drawingPath){const parts=drawingPath.split('/'),name=parts.pop();return [...parts,'_rels',name+'.rels'].join('/');}
+async function resolveTemplateLayout(archive){
+  const workbookPath='xl/workbook.xml',relationshipsPath='xl/_rels/workbook.xml.rels';
+  const workbookXml=await zipEntryText(archive,workbookPath),relationshipsXml=await zipEntryText(archive,relationshipsPath);
+  const relationships=new Map([...relationshipsXml.matchAll(/<Relationship\b[^>]*\/>/g)].map(match=>{const tag=match[0];return [xmlAttribute(tag,'Id'),xmlAttribute(tag,'Target')];}));
+  const worksheetPaths=new Map();
+  [...workbookXml.matchAll(/<sheet\b[^>]*\/>/g)].forEach(match=>{const tag=match[0],name=xmlAttribute(tag,'name'),relationId=xmlAttribute(tag,'r:id');if(name&&relationId&&relationships.has(relationId))worksheetPaths.set(name,ooxmlPath('xl/workbook.xml',relationships.get(relationId)));});
+  const montagePath=worksheetPaths.get('Montage'),isolationPath=worksheetPaths.get('Dämmung')||worksheetPaths.get('Isolierung'),dataPath=worksheetPaths.get('Daten'),overviewPath=worksheetPaths.get('Übersicht')||null;
+  if(!montagePath||!isolationPath||!dataPath)throw new Error('Die Vorlage benötigt die Blätter „Montage“, „Dämmung“ bzw. „Isolierung“ und „Daten“.');
+  const drawingPathFor=async worksheetPath=>{
+    const relPath=worksheetRelationshipsPath(worksheetPath),xml=await zipEntryText(archive,relPath),drawingTag=[...xml.matchAll(/<Relationship\b[^>]*\/>/g)].map(match=>match[0]).find(tag=>/\/drawing$/.test(xmlAttribute(tag,'Type')));
+    if(!drawingTag)throw new Error('Die Vorlage enthält keine Zeichenbeziehung für '+worksheetPath+'.');
+    return {worksheetRelationshipsPath:relPath,drawingPath:ooxmlPath(worksheetPath,xmlAttribute(drawingTag,'Target'))};
+  };
+  const montageDrawing=await drawingPathFor(montagePath),isolationDrawing=await drawingPathFor(isolationPath),version6=Boolean(overviewPath&&worksheetPaths.has('Dämmung'));
+  return {
+    workbookPath,relationshipsPath,montagePath,isolationPath,dataPath,overviewPath,
+    montageWorksheetRelationshipsPath:montageDrawing.worksheetRelationshipsPath,isolationWorksheetRelationshipsPath:isolationDrawing.worksheetRelationshipsPath,
+    montageDrawingPath:montageDrawing.drawingPath,isolationDrawingPath:isolationDrawing.drawingPath,
+    montageDrawingRelationshipsPath:drawingRelationshipsPath(montageDrawing.drawingPath),isolationDrawingRelationshipsPath:drawingRelationshipsPath(isolationDrawing.drawingPath),
+    headerBlockStarts:version6?TEMPLATE_V6_HEADER_BLOCK_STARTS:TEMPLATE_HEADER_BLOCK_STARTS,
+    dnMatrixBlockStarts:version6?TEMPLATE_V6_DN_MATRIX_BLOCK_STARTS:TEMPLATE_DN_MATRIX_BLOCK_STARTS,
+    materialBlockStarts:version6?TEMPLATE_V6_MATERIAL_BLOCK_STARTS:TEMPLATE_MATERIAL_BLOCK_STARTS,
+    materialRowsPerBlock:version6?TEMPLATE_V6_MATERIAL_ROWS_PER_BLOCK:TEMPLATE_MATERIAL_ROWS_PER_BLOCK,
+    // Die Armaturenliste gehört auch in V6 in die Vorabzugstabelle an die
+    // vorgesehenen xx-Positionen.
+    materialLabelColumn:'AN',
+    materialQuantityColumn:'AS',
+    isolationFactorBlockStarts:version6?TEMPLATE_V6_ISOLATION_FACTOR_BLOCK_STARTS:TEMPLATE_ISOLATION_FACTOR_BLOCK_STARTS,
+    isolationFactorColumns:version6?TEMPLATE_V6_ISOLATION_FACTOR_COLUMNS:TEMPLATE_ISOLATION_FACTOR_COLUMNS,
+    isVersion6:version6
+  };
+}
 function crc32(bytes){let crc=0xffffffff;for(const byte of bytes){crc^=byte;for(let bit=0;bit<8;bit++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}return (crc^0xffffffff)>>>0;}
 function zipTimestamp(){const now=new Date();return {time:(now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1),date:((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate()};}
 function newZipLocal(name,content){const encodedName=new TextEncoder().encode(name),stamp=zipTimestamp(),header=new Uint8Array(30+encodedName.length),crc=crc32(content);zipSetU32(header,0,ZIP_LOCAL_HEADER);zipSetU16(header,4,20);zipSetU16(header,6,0x800);zipSetU16(header,8,0);zipSetU16(header,10,stamp.time);zipSetU16(header,12,stamp.date);zipSetU32(header,14,crc);zipSetU32(header,18,content.length);zipSetU32(header,22,content.length);zipSetU16(header,26,encodedName.length);header.set(encodedName,30);return {local:joinZipBytes([header,content]),name:encodedName,crc,stamp};}
@@ -2174,6 +2261,10 @@ function sortTemplateProjectDataRows(xml,lastRow=42){
 }
 async function updateTemplateProjectTableRange(archive,changes){
   const path='xl/tables/table1.xml';
+  // V6 führt die Projektliste nicht mehr zwingend als Excel-Tabelle. In
+  // diesem Fall werden die Werte direkt im Blatt „Daten“ gepflegt; eine
+  // nicht vorhandene Tabellen-XML ist daher kein Exportfehler.
+  if(!archive.entries.some(entry=>entry.name===path))return;
   let xml=changes.get(path)||await zipEntryText(archive,path);
   const tableRef=/<table\b(?=[^>]*\bref=")[^>]*\bref="A1:B\d+"[^>]*>/,filterRef=/<autoFilter\b(?=[^>]*\bref=")[^>]*\bref="A1:B\d+"[^>]*\/>/;
   if(!tableRef.test(xml)||!filterRef.test(xml))throw new Error('Die Projekttabelle der Vorlage enthält nicht die erwarteten Bereiche A1:B… .');
@@ -2181,16 +2272,16 @@ async function updateTemplateProjectTableRange(archive,changes){
   xml=xml.replace(filterRef,match=>match.replace(/\bref="A1:B\d+"/,'ref="A1:B42"'));
   changes.set(path,xml);
 }
-async function writeProjectListToTemplateData(archive,changes,entries){
+async function writeProjectListToTemplateData(archive,changes,entries,layout){
   if(entries.length>PROJECT_LIST_MAX_ENTRIES)throw new Error(`Die Projektliste enthält ${entries.length} Projekte. Die Vorlage unterstützt maximal ${PROJECT_LIST_MAX_ENTRIES} Projekte.`);
-  let xml=changes.get('xl/worksheets/sheet3.xml')||await zipEntryText(archive,'xl/worksheets/sheet3.xml');
+  let xml=changes.get(layout.dataPath)||await zipEntryText(archive,layout.dataPath);
   for(let index=0;index<PROJECT_LIST_MAX_ENTRIES;index++){
     const entry=entries[index]||{number:'',name:''},row=index+2;
     xml=replaceTemplateProjectDataRow(xml,row,entry);
   }
   xml=sortTemplateProjectDataRows(xml,42);
   xml=updateTemplateProjectDataDimension(xml,42);
-  changes.set('xl/worksheets/sheet3.xml',xml);
+  changes.set(layout.dataPath,xml);
   await updateTemplateProjectTableRange(archive,changes);
 }
 function templateColumnName(columnNumber){
@@ -2255,21 +2346,21 @@ function splitDnLengthGroupsForTemplate(groups){
     return rows;
   });
 }
-function validateTemplateDnMatrices(sheets){
+function validateTemplateDnMatrices(sheets,layout){
   const matrices=sheets.map((sheet,index)=>({sheet,groups:splitDnLengthGroupsForTemplate(montageDnLengthGroups(sheet)),blockIndex:index}));
   matrices.forEach(({sheet,groups,blockIndex})=>{
     if(groups.length>TEMPLATE_DN_MATRIX_MAX_DN){
-      const startRow=TEMPLATE_DN_MATRIX_BLOCK_STARTS[blockIndex],endRow=startRow+TEMPLATE_DN_MATRIX_MAX_DN-1;
+      const startRow=layout.dnMatrixBlockStarts[blockIndex],endRow=startRow+TEMPLATE_DN_MATRIX_MAX_DN-1;
       throw new Error('Blatt „'+sheet.name+'“, Montage-Bereich '+(blockIndex+1)+' (Zeilen '+startRow+'–'+endRow+') benötigt '+groups.length+' DN-Zeilen. Die Vorlage hat dort nur '+TEMPLATE_DN_MATRIX_MAX_DN+' freie DN-Zeilen.');
     }
   });
   return matrices;
 }
-async function writeTemplateDnMatrices(archive,changes,sheets){
-  const matrices=validateTemplateDnMatrices(sheets);
-  let xml=changes.get('xl/worksheets/sheet1.xml')||await zipEntryText(archive,'xl/worksheets/sheet1.xml');
-  for(let blockIndex=0;blockIndex<TEMPLATE_DN_MATRIX_BLOCK_STARTS.length;blockIndex++){
-    const groups=matrices[blockIndex]?.groups||[],startRow=TEMPLATE_DN_MATRIX_BLOCK_STARTS[blockIndex];
+async function writeTemplateDnMatrices(archive,changes,sheets,layout){
+  const matrices=validateTemplateDnMatrices(sheets,layout);
+  let xml=changes.get(layout.montagePath)||await zipEntryText(archive,layout.montagePath);
+  for(let blockIndex=0;blockIndex<layout.dnMatrixBlockStarts.length;blockIndex++){
+    const groups=matrices[blockIndex]?.groups||[],startRow=layout.dnMatrixBlockStarts[blockIndex];
     for(let rowOffset=0;rowOffset<TEMPLATE_DN_MATRIX_MAX_DN;rowOffset++){
       const row=startRow+rowOffset,group=groups[rowOffset];
       xml=replaceTemplateDnMatrixCell(xml,'E'+row,group?group.dn:null);
@@ -2277,9 +2368,10 @@ async function writeTemplateDnMatrices(archive,changes,sheets){
     }
   }
   assertTemplateSheetCellIntegrity(xml);
-  changes.set('xl/worksheets/sheet1.xml',xml);
+  changes.set(layout.montagePath,xml);
 }
 function templateMaterialSymbolName(symbol){
+  if(isDrawingShape(symbol))return null;
   if(symbol.type==='generalValve'||symbol.type==='connection'||symbol.type==='breakthrough')return null;
   if(symbol.type==='customSymbol'){
     const definition=customSymbolDefinition(symbol);
@@ -2306,12 +2398,13 @@ function templateExportSymbolWorldPosition(symbol,strokes=[]){
 }
 function templateExportPositionOutsideSheet(position,sheet){
   if(!Number.isFinite(position?.x)||!Number.isFinite(position?.y))return true;
-  const scale=normalizePlanScale(sheet?.planScale),dimensions=paperDimensionsForSheet(sheet),width=dimensions.width/scale,height=dimensions.height/scale;
+  const dimensions=paperDimensionsForSheet(sheet),scale=sheetWorldRenderScale(sheet,dimensions.width),width=dimensions.width/scale,height=dimensions.height/scale;
   return position.x<0||position.y<0||position.x>width||position.y>height;
 }
 function collectTemplateMaterialSymbolIssues(sheets){
   const issues=[],counters=new Map();
   sheets.forEach(sheet=>(sheet?.symbols||[]).forEach(symbol=>{
+    if(isDrawingShape(symbol))return;
     if(symbol.type==='generalValve'||symbol.type==='connection'||symbol.type==='breakthrough')return;
     const name=templateMaterialSymbolIssueName(symbol),counterKey=(sheet.id||sheet.name||'Blatt')+'\u0000'+name.toLocaleLowerCase('de-DE'),number=(counters.get(counterKey)||0)+1;
     counters.set(counterKey,number);
@@ -2425,10 +2518,10 @@ function templateMaterialGroupsForSheet(sheet){
   });
   return [...groups.values()].sort((first,second)=>second.dn-first.dn||first.name.localeCompare(second.name,'de'));
 }
-function validateTemplateMaterialTables(sheets){
+function validateTemplateMaterialTables(sheets,rowsPerBlock=TEMPLATE_MATERIAL_ROWS_PER_BLOCK){
   const groups=sheets.map(sheet=>({sheet,items:templateMaterialGroupsForSheet(sheet)}));
   groups.forEach(({sheet,items})=>{
-    if(items.length>TEMPLATE_MATERIAL_ROWS_PER_BLOCK)throw new Error('Blatt „'+sheet.name+'“ hat '+items.length+' Materialpositionen. Die Vorlage unterstützt '+TEMPLATE_MATERIAL_ROWS_PER_BLOCK+' Positionen; '+(items.length-TEMPLATE_MATERIAL_ROWS_PER_BLOCK)+' Positionen zu viel.');
+    if(items.length>rowsPerBlock)throw new Error('Blatt „'+sheet.name+'“ hat '+items.length+' Materialpositionen. Die Vorlage unterstützt '+rowsPerBlock+' Positionen; '+(items.length-rowsPerBlock)+' Positionen zu viel.');
   });
   return groups;
 }
@@ -2439,19 +2532,19 @@ function replaceTemplateMaterialCell(xml,reference,value,type){
   const replacement=type==='number'?templateNumberOrBlankCell(reference,value,style):(value===null||value===undefined||value===''?templateNumberOrBlankCell(reference,null,style):templateTextCell(reference,value,style));
   return xml.replace(pattern,replacement);
 }
-async function writeTemplateMaterialTables(archive,changes,sheets){
-  const materialTables=validateTemplateMaterialTables(sheets);
-  let xml=changes.get('xl/worksheets/sheet1.xml')||await zipEntryText(archive,'xl/worksheets/sheet1.xml');
-  for(let blockIndex=0;blockIndex<TEMPLATE_MATERIAL_BLOCK_STARTS.length;blockIndex++){
-    const items=materialTables[blockIndex]?.items||[],startRow=TEMPLATE_MATERIAL_BLOCK_STARTS[blockIndex];
-    for(let rowOffset=0;rowOffset<TEMPLATE_MATERIAL_ROWS_PER_BLOCK;rowOffset++){
+async function writeTemplateMaterialTables(archive,changes,sheets,layout){
+  const materialTables=validateTemplateMaterialTables(sheets,layout.materialRowsPerBlock);
+  let xml=changes.get(layout.montagePath)||await zipEntryText(archive,layout.montagePath);
+  for(let blockIndex=0;blockIndex<layout.materialBlockStarts.length;blockIndex++){
+    const items=materialTables[blockIndex]?.items||[],startRow=layout.materialBlockStarts[blockIndex];
+    for(let rowOffset=0;rowOffset<layout.materialRowsPerBlock;rowOffset++){
       const row=startRow+rowOffset,item=items[rowOffset],label=item?item.name+' DN '+item.dn:'';
-      xml=replaceTemplateMaterialCell(xml,'AM'+row,label,'text');
-      xml=replaceTemplateMaterialCell(xml,'AR'+row,item?item.count:null,'number');
+      xml=replaceTemplateMaterialCell(xml,layout.materialLabelColumn+row,label,'text');
+      xml=replaceTemplateMaterialCell(xml,layout.materialQuantityColumn+row,item?item.count:null,'number');
     }
   }
   assertTemplateSheetCellIntegrity(xml);
-  changes.set('xl/worksheets/sheet1.xml',xml);
+  changes.set(layout.montagePath,xml);
 }
 function templateCellXml(xml,reference){
   const pattern=new RegExp('<c\\b(?=[^>]*\\br="'+reference+'")[^>]*?(?:\\/>|>[\\s\\S]*?<\\/c>)','g'),matches=[...xml.matchAll(pattern)];
@@ -2498,13 +2591,13 @@ function templateIsolationFactorGroups(sheet){
   });
   return [...groups.values()];
 }
-async function writeTemplateIsolationFactorTables(archive,changes,sheets){
-  let isolationXml=changes.get('xl/worksheets/sheet2.xml')||await zipEntryText(archive,'xl/worksheets/sheet2.xml');
-  const montageXml=changes.get('xl/worksheets/sheet1.xml')||await zipEntryText(archive,'xl/worksheets/sheet1.xml');
-  for(let blockIndex=0;blockIndex<TEMPLATE_ISOLATION_FACTOR_BLOCK_STARTS.length;blockIndex++){
+async function writeTemplateIsolationFactorTables(archive,changes,sheets,layout){
+  let isolationXml=changes.get(layout.isolationPath)||await zipEntryText(archive,layout.isolationPath);
+  const montageXml=changes.get(layout.montagePath)||await zipEntryText(archive,layout.montagePath);
+  for(let blockIndex=0;blockIndex<layout.isolationFactorBlockStarts.length;blockIndex++){
     const sheet=sheets[blockIndex];if(!sheet)continue;
-    const startRow=TEMPLATE_ISOLATION_FACTOR_BLOCK_STARTS[blockIndex],dnColumns=new Map();
-    TEMPLATE_ISOLATION_FACTOR_COLUMNS.forEach(column=>{
+    const startRow=layout.isolationFactorBlockStarts[blockIndex],dnColumns=new Map();
+    layout.isolationFactorColumns.forEach(column=>{
       const dn=templateIsolationHeaderDn(isolationXml,montageXml,column+startRow);
       if(Number.isFinite(dn))dnColumns.set(dn,column);
     });
@@ -2515,15 +2608,15 @@ async function writeTemplateIsolationFactorTables(archive,changes,sheets){
     });
   }
   assertTemplateSheetCellIntegrity(isolationXml);
-  changes.set('xl/worksheets/sheet2.xml',isolationXml);
+  changes.set(layout.isolationPath,isolationXml);
 }
-async function prepareTemplateProjectList(archive,changes){
+async function prepareTemplateProjectList(archive,changes,layout){
   const projectList=await getProjectList();
   if(!projectList)throw new Error('Bitte zuerst über „Projektliste wählen…“ eine Projektliste speichern.');
   const projectNumber=String(normalizeProjectInfo(state.projectInfo).projekt||'').trim(),entry=projectList.entries.find(item=>item.number.toLocaleLowerCase('de-DE')===projectNumber.toLocaleLowerCase('de-DE'));
   if(!projectNumber)throw new Error('Bitte im Plankopf eine Projektnummer eingeben.');
   if(!entry)throw new Error(`Die Projektnummer „${projectNumber}“ ist nicht in der gewählten Projektliste enthalten. Der Export wurde nicht erstellt.`);
-  await writeProjectListToTemplateData(archive,changes,projectList.entries);
+  await writeProjectListToTemplateData(archive,changes,projectList.entries,layout);
   return entry;
 }
 function nextDrawingId(xml){return Math.max(0,...[...xml.matchAll(/<xdr:cNvPr\b[^>]*\bid="(\d+)"/g)].map(match=>Number(match[1])||0))+1;}
@@ -2543,9 +2636,16 @@ function assertGeneratedPlanPngAnchor(anchorXml){
   const anchor=documentXml.getElementsByTagNameNS('*','oneCellAnchor')[0],children=new Set(anchor?[...anchor.children].map(child=>child.localName):[]);
   if(!anchor||!children.has('from')||!children.has('ext')||!children.has('pic')||!children.has('clientData')||!anchorXml.includes('r:embed="rId'))throw new Error('Der neu erzeugte Plan-PNG-Anker ist unvollständig.');
 }
+function generatedPlanPngAnchor(id,name,relationshipId,fromRow,orientation='landscape'){
+  const portrait=normalizeSheetOrientation(orientation)==='portrait',cx=portrait?3510000:7020000,cy=4965000;
+  return `<xdr:oneCellAnchor><xdr:from><xdr:col>1</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>${fromRow}</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:ext cx="${cx}" cy="${cy}"/><xdr:pic><xdr:nvPicPr><xdr:cNvPr id="${id}" name="${escapeXml(name)}" descr="Planzeichnung"/><xdr:cNvPicPr/><xdr:nvPr/></xdr:nvPicPr><xdr:blipFill><a:blip xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:embed="rId${relationshipId}"/><a:stretch><a:fillRect/></a:stretch></xdr:blipFill><xdr:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></xdr:spPr></xdr:pic><xdr:clientData/></xdr:oneCellAnchor>`;
+}
 function templateImageAnchor(drawingXml,id,name,relationshipId,fromRow,orientation='landscape'){
   const source=drawingXml.match(/<xdr:oneCellAnchor>[\s\S]*?<xdr:pic>[\s\S]*?<\/xdr:oneCellAnchor>/)?.[0];
-  if(!source)throw new Error('Die Vorlage enthält keinen verwendbaren Bildanker.');
+  // V6 kann ohne vorgegebenes Planbild ausgeliefert werden. Dann wird nur
+  // unser neuer, vollständiger Bildanker ergänzt; vorhandene Vorlagenanker
+  // bleiben dabei unverändert erhalten.
+  if(!source)return generatedPlanPngAnchor(id,name,relationshipId,fromRow,orientation);
   const from=`<xdr:from><xdr:col>1</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>${fromRow}</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from>`;
   return source
     .replace(/<a:extLst>[\s\S]*?<\/a:extLst>/g,'')
@@ -2555,14 +2655,13 @@ function templateImageAnchor(drawingXml,id,name,relationshipId,fromRow,orientati
     .replace(/r:embed="rId\d+"/,`r:embed="rId${relationshipId}"`)
     .replace(/<a:xfrm>[\s\S]*?<\/a:xfrm>/,'');
 }
-async function appendTemplateImages(archive,changes,drawingPath,relationshipsPath,images,prefix){
-  let drawingXml=changes.get(drawingPath)||await zipEntryText(archive,drawingPath),relationshipsXml=changes.get(relationshipsPath)||await zipEntryText(archive,relationshipsPath),drawingId=nextDrawingId(drawingXml),relationshipId=nextRelationshipId(relationshipsXml),fromRow=1;const anchors=[];
+async function appendTemplateImages(archive,changes,drawingPath,relationshipsPath,images,prefix,fromRows=[]){
+  let drawingXml=changes.get(drawingPath)||await zipEntryText(archive,drawingPath),relationshipsXml=changes.get(relationshipsPath)||await zipEntryText(archive,relationshipsPath),drawingId=nextDrawingId(drawingXml),relationshipId=nextRelationshipId(relationshipsXml);const anchors=[];
   images.forEach(({png,sheet},index)=>{
     const imageName=`isometrie-plan-${prefix}-${index+1}.png`;
     changes.set(`xl/media/${imageName}`,new Uint8Array(png));
     relationshipsXml=relationshipsXml.replace('</Relationships>',`<Relationship Id="rId${relationshipId}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/${imageName}"/></Relationships>`);
-    anchors.push(templateImageAnchor(drawingXml,drawingId++,`Isometrie Blatt ${index+1}`,relationshipId++,fromRow,normalizeSheetOrientation(sheet?.orientation)));
-    fromRow+=40;
+    anchors.push(templateImageAnchor(drawingXml,drawingId++,`Isometrie Blatt ${index+1}`,relationshipId++,fromRows[index]??(1+index*40),normalizeSheetOrientation(sheet?.orientation)));
   });
   anchors.forEach(assertGeneratedPlanPngAnchor);
   drawingXml=drawingXml.replace('</xdr:wsDr>',`${anchors.join('')}</xdr:wsDr>`);
@@ -2570,22 +2669,35 @@ async function appendTemplateImages(archive,changes,drawingPath,relationshipsPat
   assertDrawingReferences(drawingXml,relationshipsXml);
   changes.set(drawingPath,drawingXml);changes.set(relationshipsPath,relationshipsXml);
 }
-async function writeTemplateHeaderFields(archive,changes,sheets){
+async function writeTemplateHeaderFields(archive,changes,sheets,layout,projectListEntry=null){
   const firstSheet=sheets[0]||state.sheets[0];
-  let xml=changes.get('xl/worksheets/sheet1.xml')||await zipEntryText(archive,'xl/worksheets/sheet1.xml');const project=normalizeProjectInfo(state.projectInfo),remark=normalizeSheetInfo(firstSheet.info).bemerkung||'';
-  TEMPLATE_HEADER_BLOCK_STARTS.forEach((row,index)=>{
+  let xml=changes.get(layout.montagePath)||await zipEntryText(archive,layout.montagePath);const project=normalizeProjectInfo(state.projectInfo),remark=normalizeSheetInfo(firstSheet.info).bemerkung||'';
+  layout.headerBlockStarts.forEach((row,index)=>{
     const sheet=sheets[index],montage=String((sheet?headerValueForSheet(sheet,'montage'):(headerScopeIsGlobal('montage')?project.montage:''))||'').trim().toLocaleUpperCase('de-DE'),title=`MONTAGE - ${montage}`;
     xml=row===1?replaceTemplateCell(xml,`B${row}`,title):replaceTemplateOptionalTextCell(xml,`B${row}`,title);
   });
-  xml=replaceTemplateCell(xml,'AM3',String(project.projekt||'').trim());
-  if(remark){xml=replaceTemplateCell(xml,'AB13','Bemerkung:');xml=replaceTemplateCell(xml,'AQ3',remark);}
-  sheets.forEach((sheet,index)=>{
-    const row=index+3;
-    xml=setOrInsertTemplateTextCell(xml,`AO${row}`,headerValueForSheet(sheet,'stiege'));
-    xml=setOrInsertTemplateTextCell(xml,`AS${row}`,headerValueForSheet(sheet,'leistungszeitraum'));
-    xml=setOrInsertTemplateTextCell(xml,`AU${row}`,headerValueForSheet(sheet,'geschoss'));
-  });
-  changes.set('xl/worksheets/sheet1.xml',xml);
+  if(layout.isVersion6&&layout.overviewPath){
+    let overviewXml=changes.get(layout.overviewPath)||await zipEntryText(archive,layout.overviewPath);
+    overviewXml=replaceTemplateCell(overviewXml,'J4',String(projectListEntry?.name||'').trim());
+    overviewXml=replaceTemplateCell(overviewXml,'J5',String(project.projekt||'').trim());
+    overviewXml=replaceTemplateCell(overviewXml,'J6',headerValueForSheet(firstSheet,'stiege'));
+    overviewXml=replaceTemplateCell(overviewXml,'J8',headerValueForSheet(firstSheet,'leistungszeitraum'));
+    layout.headerBlockStarts.forEach((_,index)=>{
+      const sheet=sheets[index];
+      overviewXml=replaceTemplateCell(overviewXml,`J${11+index}`,sheet?headerValueForSheet(sheet,'geschoss'):'' );
+    });
+    changes.set(layout.overviewPath,overviewXml);
+  }else{
+    xml=replaceTemplateCell(xml,'AM3',String(project.projekt||'').trim());
+    if(remark){xml=replaceTemplateCell(xml,'AB13','Bemerkung:');xml=replaceTemplateCell(xml,'AQ3',remark);}
+    sheets.forEach((sheet,index)=>{
+      const row=index+3;
+      xml=setOrInsertTemplateTextCell(xml,`AO${row}`,headerValueForSheet(sheet,'stiege'));
+      xml=setOrInsertTemplateTextCell(xml,`AS${row}`,headerValueForSheet(sheet,'leistungszeitraum'));
+      xml=setOrInsertTemplateTextCell(xml,`AU${row}`,headerValueForSheet(sheet,'geschoss'));
+    });
+  }
+  changes.set(layout.montagePath,xml);
 }
 async function writeTemplateTitleOnly(archive,changes){
   let xml=await zipEntryText(archive,'xl/worksheets/sheet1.xml');const project=normalizeProjectInfo(state.projectInfo),montage=String((headerScopeIsGlobal('montage')?project.montage:'Blattbezogen')||'').trim().toLocaleUpperCase('de-DE'),title=`MONTAGE - ${montage}`;
@@ -2606,31 +2718,51 @@ async function prepareTemplateFullRecalculation(archive,changes,removedPaths){
   contentTypes=contentTypes.replace(/<Override\b(?=[^>]*\bPartName=(?:"\/xl\/calcChain\.xml"|'\/xl\/calcChain\.xml'))[^>]*\/>/g,'');
   changes.set('[Content_Types].xml',contentTypes);
 }
-async function sheetExportPngBytes(sheet,mode){const output=await createSheetExportCanvas(sheet,mode),blob=await canvasBlob(output);return await blob.arrayBuffer();}
+async function sheetExportPngBytes(sheet,mode){const output=await createSheetExportCanvas(sheet,mode,4),blob=await canvasBlob(output);return await blob.arrayBuffer();}
 async function validateTemplateArchive(bytes){
   const archive=zipEntries(bytes),names=new Set(archive.entries.map(entry=>entry.name));
-  ['xl/worksheets/sheet1.xml','xl/worksheets/sheet2.xml','xl/worksheets/sheet3.xml','xl/worksheets/_rels/sheet1.xml.rels','xl/worksheets/_rels/sheet2.xml.rels','xl/drawings/drawing1.xml','xl/drawings/drawing2.xml','xl/drawings/_rels/drawing1.xml.rels','xl/drawings/_rels/drawing2.xml.rels','xl/workbook.xml','[Content_Types].xml'].forEach(path=>{if(!names.has(path))throw new Error(`Die Vorlage enthält „${path}“ nicht.`);});
-  const workbookXml=await zipEntryText(archive,'xl/workbook.xml'),contentTypes=await zipEntryText(archive,'[Content_Types].xml'),sheet1Relations=await zipEntryText(archive,'xl/worksheets/_rels/sheet1.xml.rels'),sheet2Relations=await zipEntryText(archive,'xl/worksheets/_rels/sheet2.xml.rels');
-  if(!workbookXml.includes('name="Montage"')||!workbookXml.includes('name="Isolierung"')||!workbookXml.includes('name="Daten"'))throw new Error('Die Vorlage benötigt die Blätter „Montage“, „Isolierung“ und „Daten“.');
-  if(!contentTypes.includes('Extension="png"')||!sheet1Relations.includes('../drawings/drawing1.xml')||!sheet2Relations.includes('../drawings/drawing2.xml'))throw new Error('Die erforderlichen OOXML-Zeichnungsbeziehungen der Vorlage fehlen.');
+  ['xl/workbook.xml','xl/_rels/workbook.xml.rels','[Content_Types].xml'].forEach(path=>{if(!names.has(path))throw new Error(`Die Vorlage enthält „${path}“ nicht.`);});
+  const layout=await resolveTemplateLayout(archive),required=[layout.montagePath,layout.isolationPath,layout.dataPath,layout.montageWorksheetRelationshipsPath,layout.isolationWorksheetRelationshipsPath,layout.montageDrawingPath,layout.isolationDrawingPath,layout.montageDrawingRelationshipsPath,layout.isolationDrawingRelationshipsPath];
+  if(layout.overviewPath)required.push(layout.overviewPath);
+  required.forEach(path=>{if(!names.has(path))throw new Error(`Die Vorlage enthält „${path}“ nicht.`);});
+  const contentTypes=await zipEntryText(archive,'[Content_Types].xml'),montageRelations=await zipEntryText(archive,layout.montageWorksheetRelationshipsPath),isolationRelations=await zipEntryText(archive,layout.isolationWorksheetRelationshipsPath);
+  if(!contentTypes.includes('Extension="png"')||!montageRelations.includes('../drawings/')||!isolationRelations.includes('../drawings/'))throw new Error('Die erforderlichen OOXML-Zeichnungsbeziehungen der Vorlage fehlen.');
+  archive.templateLayout=layout;
   return archive;
 }
 function byteEqual(first,second){return first.length===second.length&&first.every((value,index)=>value===second[index]);}
+async function limitTemplatePrintAreas(archive,changes,layout,count){
+  let workbookXml=changes.get(layout.workbookPath)||await zipEntryText(archive,layout.workbookPath),updated=0;
+  workbookXml=workbookXml.replace(/<definedName\b(?=[^>]*\bname="_xlnm\.Print_Area")[^>]*>([\s\S]*?)<\/definedName>/g,(match,contents)=>{
+    const areas=contents.split(',').map(area=>area.trim()).filter(Boolean);
+    if(areas.length< count)throw new Error(`Die Vorlage enthält nur ${areas.length} Druckbereiche, benötigt werden ${count}.`);
+    updated++;
+    return match.replace(contents,areas.slice(0,count).join(','));
+  });
+  if(updated<2)throw new Error('Die Vorlage enthält keine Druckbereiche für Montage und Isolierung.');
+  changes.set(layout.workbookPath,workbookXml);
+}
 function assertOriginalDrawingsUntouched(sourceArchive,resultArchive){
-  ['xl/drawings/drawing1.xml','xl/drawings/drawing2.xml','xl/drawings/_rels/drawing1.xml.rels','xl/drawings/_rels/drawing2.xml.rels'].forEach(path=>{
+  const layout=sourceArchive.templateLayout;
+  [layout.montageDrawingPath,layout.isolationDrawingPath,layout.montageDrawingRelationshipsPath,layout.isolationDrawingRelationshipsPath].forEach(path=>{
     const source=sourceArchive.entries.find(entry=>entry.name===path),result=resultArchive.entries.find(entry=>entry.name===path);
     if(!source||!result||!byteEqual(source.local,result.local))throw new Error(`Die unveränderte Prüfung hat ${path} verändert.`);
   });
 }
-async function verifyTemplateExport(bytes,expectedMontageImages=0,expectedIsolationImages=0,requireFullRecalculation=false){
+async function verifyTemplateExport(bytes,expectedMontageImages=0,expectedIsolationImages=0,requireFullRecalculation=false,expectedPrintAreas=null){
   const archive=await validateTemplateArchive(bytes),names=archive.entries.map(entry=>entry.name),media=names.filter(name=>/^xl\/media\/isometrie-plan-.*\.png$/i.test(name));
   if(media.length!==expectedMontageImages+expectedIsolationImages)throw new Error('Die Zeichnungen konnten nicht vollständig in die Vorlage eingefügt werden.');
-  const workbookXml=await zipEntryText(archive,'xl/workbook.xml'),printAreas=[...workbookXml.matchAll(/<definedName[^>]*name="_xlnm.Print_Area"[^>]*>([\s\S]*?)<\/definedName>/g)].map(match=>match[1]);
-  if(printAreas.length<2||printAreas.some(area=>(area.match(/\$B\$/g)||[]).length!==6))throw new Error('Die sechs getrennten Vorlagenbereiche konnten nicht bestätigt werden.');
-  const drawing1=await zipEntryText(archive,'xl/drawings/drawing1.xml'),drawing2=await zipEntryText(archive,'xl/drawings/drawing2.xml'),relationships1=await zipEntryText(archive,'xl/drawings/_rels/drawing1.xml.rels'),relationships2=await zipEntryText(archive,'xl/drawings/_rels/drawing2.xml.rels');
-  assertTemplateSheetCellIntegrity(await zipEntryText(archive,'xl/worksheets/sheet1.xml'));
-  assertTemplateSheetCellIntegrity(await zipEntryText(archive,'xl/worksheets/sheet2.xml'));
-  assertDrawingXmlIntegrity(drawing1,'drawing1.xml');assertDrawingXmlIntegrity(drawing2,'drawing2.xml');
+  const layout=archive.templateLayout,workbookXml=await zipEntryText(archive,layout.workbookPath),printAreas=[...workbookXml.matchAll(/<definedName[^>]*name="_xlnm.Print_Area"[^>]*>([\s\S]*?)<\/definedName>/g)].map(match=>match[1]);
+  const expectedAreas=expectedPrintAreas??layout.headerBlockStarts.length;
+  if(printAreas.length<2||printAreas.some(area=>(area.match(/\$B\$/g)||[]).length!==expectedAreas))throw new Error(`Die ${expectedAreas} getrennten Vorlagenbereiche konnten nicht bestätigt werden.`);
+  const drawing1=await zipEntryText(archive,layout.montageDrawingPath),drawing2=await zipEntryText(archive,layout.isolationDrawingPath),relationships1=await zipEntryText(archive,layout.montageDrawingRelationshipsPath),relationships2=await zipEntryText(archive,layout.isolationDrawingRelationshipsPath);
+  assertTemplateSheetCellIntegrity(await zipEntryText(archive,layout.montagePath));
+  assertTemplateSheetCellIntegrity(await zipEntryText(archive,layout.isolationPath));
+  // Die vorhandenen Drawing-Dateien kommen unverändert aus der Vorlage.
+  // Ihre Erweiterungs-Namensräume werden von Excel akzeptiert, können aber
+  // vom Browser-DOMParser fälschlich als Parserfehler gemeldet werden. Die
+  // ausschließlich neu ergänzten Plan-PNG-Anker werden bereits beim Erzeugen
+  // separat auf ihre vollständige XML-Struktur geprüft.
   assertDrawingReferences(drawing1,relationships1);assertDrawingReferences(drawing2,relationships2);
   if(requireFullRecalculation){
     const calcPr=workbookXml.match(/<calcPr\b[^>]*\/>|<calcPr\b[^>]*>[\s\S]*?<\/calcPr>/)?.[0]||'',workbookRelationships=await zipEntryText(archive,'xl/_rels/workbook.xml.rels'),contentTypes=await zipEntryText(archive,'[Content_Types].xml');
@@ -2642,25 +2774,27 @@ async function verifyTemplateExport(bytes,expectedMontageImages=0,expectedIsolat
 }
 async function exportExcelTemplateFullPlanTest(){
   syncActiveSheet();
-  if(state.sheets.length>6){alert('Die Excel-Vorlage unterstützt maximal sechs Blätter pro Export. Bitte reduzieren Sie das Projekt auf sechs Blätter oder weniger.');return;}
   const template=await getExcelTemplate();if(!template?.bytes){alert('Bitte zuerst eine Excel-Vorlage wählen.');return;}
   exportTemplateFullPlanOption.disabled=true;
   try{
-    const source=new Uint8Array(template.bytes),archive=await validateTemplateArchive(source),sheets=state.sheets.slice(0,6),changes=new Map(),removedPaths=new Set(),materialSymbolIssues=collectTemplateMaterialSymbolIssues(sheets);
+    const source=new Uint8Array(template.bytes),archive=await validateTemplateArchive(source),layout=archive.templateLayout;
+    if(state.sheets.length>layout.headerBlockStarts.length){throw new Error('Die Excel-Vorlage unterstützt maximal '+layout.headerBlockStarts.length+' Blätter pro Export. Bitte reduzieren Sie das Projekt auf diese Anzahl oder weniger.');}
+    const sheets=state.sheets.slice(0,layout.headerBlockStarts.length),printAreaCount=sheets.length,changes=new Map(),removedPaths=new Set(),materialSymbolIssues=collectTemplateMaterialSymbolIssues(sheets);
     if(materialSymbolIssues.length){showTemplateExportSymbolIssues(materialSymbolIssues);return;}
     templateExportSymbolIssues=[];templateExportSymbolIssueIndex=0;
-    await prepareTemplateProjectList(archive,changes);
-    await writeTemplateDnMatrices(archive,changes,sheets);
-    await writeTemplateIsolationFactorTables(archive,changes,sheets);
-    await writeTemplateMaterialTables(archive,changes,sheets);
+    const projectListEntry=await prepareTemplateProjectList(archive,changes,layout);
+    await writeTemplateDnMatrices(archive,changes,sheets,layout);
+    await writeTemplateIsolationFactorTables(archive,changes,sheets,layout);
+    await writeTemplateMaterialTables(archive,changes,sheets,layout);
     const montageImages=await Promise.all(sheets.map(async sheet=>({sheet,png:await sheetExportPngBytes(sheet,'montage')})));
     const isolationImages=await Promise.all(sheets.map(async sheet=>({sheet,png:await sheetExportPngBytes(sheet,'isolation')})));
-    await writeTemplateHeaderFields(archive,changes,sheets);
+    await writeTemplateHeaderFields(archive,changes,sheets,layout,projectListEntry);
+    await limitTemplatePrintAreas(archive,changes,layout,printAreaCount);
     await prepareTemplateFullRecalculation(archive,changes,removedPaths);
-    await appendTemplateImages(archive,changes,'xl/drawings/drawing1.xml','xl/drawings/_rels/drawing1.xml.rels',montageImages,'montage');
-    await appendTemplateImages(archive,changes,'xl/drawings/drawing2.xml','xl/drawings/_rels/drawing2.xml.rels',isolationImages,'isolierung');
+    await appendTemplateImages(archive,changes,layout.montageDrawingPath,layout.montageDrawingRelationshipsPath,montageImages,'montage',layout.headerBlockStarts);
+    await appendTemplateImages(archive,changes,layout.isolationDrawingPath,layout.isolationDrawingRelationshipsPath,isolationImages,'isolierung',layout.headerBlockStarts);
     const binaryChanges=new Map([...changes].map(([path,value])=>[path,typeof value==='string'?new TextEncoder().encode(value):value])),bytes=rebuildZip(archive,binaryChanges,removedPaths),fileName=buildExportFileName('xlsx','allSheets').replace(/\.xlsx$/i,'-vorlage.xlsx');
-    await verifyTemplateExport(bytes,montageImages.length,isolationImages.length,true);
+    await verifyTemplateExport(bytes,montageImages.length,isolationImages.length,true,printAreaCount);
     downloadBlob(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),fileName);
     showTransientHint(`${sheets.length} Blatt${sheets.length===1?'':'er'} in Montage und Isolierung nach Vorlage exportiert.`);
   }catch(error){console.error('Excel-Vorlagenexport fehlgeschlagen.',error);alert(`Excel nach Vorlage konnte nicht erstellt werden:\n${error?.message||'Unbekannter Fehler.'}`);}finally{exportTemplateFullPlanOption.disabled=false;}
@@ -3087,6 +3221,7 @@ function roundedCornerIndices(stroke){
 function hasRoundedCorners(stroke){return roundedCornerIndices(stroke).length>0;}
 function cornerPoint(stroke,index){return index===0?strokeStartPoint(stroke):sourceStrokePoints(stroke)[index];}
 function symbolPlacementPoint(symbol){
+  if(isDrawingShape(symbol))return shapeGeometry(symbol)?.center||null;
   const placement=symbol.type==='airVent'?airVentPlacement(symbol):symbolSegment(symbol);
   return placement?.point||null;
 }
@@ -3296,6 +3431,56 @@ function buildCornerPick(strokes,action){
   const node=pair.node||sharedPairNode(pair.first,pair.second);
   if(pair.existing!== (action==='straighten'))return null;
   return node?{kind:'pair',action,pair,candidates:[{point:node}]}:null;
+}
+function splitStrokeAtCorner(stroke,index){
+  if(!stroke||stroke.closed||index<=0||index>=stroke.points.length-1)return null;
+  ensureCornerData(stroke);
+  const originalPoints=stroke.points.map(point=>({...point})),originalCornerIds=[...stroke.cornerIds],originalRoundedIds=[...stroke.roundedCornerIds];
+  const secondId=createId(),secondPoints=originalPoints.slice(index),secondCornerIds=originalCornerIds.slice(index);
+  const second={...stroke,id:secondId,points:secondPoints,strokeStart:{...secondPoints[0]},cornerIds:secondCornerIds,roundedCornerIds:originalRoundedIds.filter(id=>secondCornerIds.includes(id))};
+  stroke.points=originalPoints.slice(0,index+1);stroke.strokeStart={...stroke.points[0]};stroke.cornerIds=originalCornerIds.slice(0,index+1);stroke.roundedCornerIds=originalRoundedIds.filter(id=>stroke.cornerIds.includes(id));
+  const strokePosition=state.strokes.findIndex(item=>item.id===stroke.id);
+  state.strokes.splice(strokePosition+1,0,second);
+  const moveSegmentReference=reference=>{
+    if(!reference||reference.strokeId!==stroke.id||!Number.isInteger(reference.segmentIndex)||reference.segmentIndex<index)return;
+    reference.strokeId=secondId;reference.segmentIndex-=index;
+  };
+  state.symbols.forEach(symbol=>{
+    if(symbol.type==='breakthrough'){
+      (symbol.references||[]).forEach(moveSegmentReference);
+      if(Array.isArray(symbol.strokeIds))symbol.strokeIds=[...new Set((symbol.references||[]).map(reference=>reference.strokeId).filter(Boolean))];
+      if(symbol.references?.length)symbol.strokeId=symbol.references[0].strokeId;
+      return;
+    }
+    if(symbol.strokeId!==stroke.id)return;
+    if(symbol.type==='airVent'){
+      if(Number(symbol.endpointIndex)>=index){symbol.strokeId=secondId;symbol.endpointIndex-=index;}
+      return;
+    }
+    moveSegmentReference(symbol);if(symbol.strokeId===secondId&&isInlineSymbol(symbol))refreshValveConnections(symbol);
+  });
+  state.dimensions.forEach(moveSegmentReference);
+  state.insulationMarkers.forEach(moveSegmentReference);
+  state.softConnections.forEach(connection=>{(connection.cuts||[]).forEach(moveSegmentReference);});
+  state.wastewaterBends.forEach(bend=>{
+    if(bend.strokeId!==stroke.id||!Number.isInteger(bend.cornerIndex)||bend.cornerIndex<index)return;
+    bend.strokeId=secondId;bend.cornerIndex-=index;
+  });
+  return second;
+}
+function splitCornerPickForStrokes(strokeIds){
+  const candidates=[];
+  strokeIds.forEach(strokeId=>{
+    const stroke=state.strokes.find(item=>item.id===strokeId);
+    if(!stroke||stroke.closed) return;
+    stroke.points.slice(1,-1).forEach((point,index)=>candidates.push({strokeId,index:index+1,point:{...point}}));
+  });
+  return candidates.length?{kind:'split',action:'split',candidates}:null;
+}
+function selectStrokeForSplitting(stroke){
+  if(!stroke||stroke.closed||stroke.points.length<3){showTransientHint('Bitte eine durchgehende Leitung mit mindestens einem Eckpunkt wählen.');return false;}
+  state.splitStrokeTargetIds=[stroke.id];state.cornerPick=splitCornerPickForStrokes(state.splitStrokeTargetIds);clearAllSelections();state.selected=[stroke.id];
+  showTransientHint('Jetzt einen oder mehrere Eckpunkte antippen. Escape beendet die Trennung.',2800);updateButtons();redraw();return true;
 }
 function sharedPairNode(first,second){
   for(const firstSide of ['start','end'])for(const secondSide of ['start','end']){
@@ -3660,6 +3845,35 @@ function createStroke(start){
 function createFreehandStroke(start){
   return {id:createId(),points:[start]};
 }
+function isDrawingShape(symbol){return symbol?.type==='shape'&&['circle','ellipse','rectangle','square'].includes(symbol.shapeType);}
+function shapeGeometry(shape){
+  if(!isDrawingShape(shape)||!Number.isFinite(shape.start?.x)||!Number.isFinite(shape.start?.y)||!Number.isFinite(shape.end?.x)||!Number.isFinite(shape.end?.y))return null;
+  let dx=shape.end.x-shape.start.x,dy=shape.end.y-shape.start.y;
+  if(shape.shapeType==='circle'||shape.shapeType==='square'){
+    const side=Math.max(Math.abs(dx),Math.abs(dy));
+    dx=(dx<0?-1:1)*side;dy=(dy<0?-1:1)*side;
+  }
+  const left=Math.min(shape.start.x,shape.start.x+dx),right=Math.max(shape.start.x,shape.start.x+dx),top=Math.min(shape.start.y,shape.start.y+dy),bottom=Math.max(shape.start.y,shape.start.y+dy);
+  return {left,right,top,bottom,width:right-left,height:bottom-top,center:{x:(left+right)/2,y:(top+bottom)/2}};
+}
+function createShape(start){
+  const dn=state.dn;
+  return {id:createId(),type:'shape',shapeType:['circle','ellipse','rectangle','square'].includes(state.activeShape)?state.activeShape:'circle',start:{...start},end:{...start},dn,width:DN_LINE_WIDTHS[dn],medium:state.medium,color:state.medium==='Divers'?normalizeDiversColor(state.diversColor):MEDIUMS[state.medium],lineStyle:'solid'};
+}
+function shapeContour(shape,steps=40){
+  const geometry=shapeGeometry(shape);if(!geometry)return [];
+  if(shape.shapeType==='rectangle'||shape.shapeType==='square')return rectangleContour(geometry.left,geometry.top,geometry.width,geometry.height);
+  return Array.from({length:steps},(_,index)=>{const angle=index/steps*Math.PI*2;return {x:geometry.center.x+Math.cos(angle)*geometry.width/2,y:geometry.center.y+Math.sin(angle)*geometry.height/2};});
+}
+function drawShape(shape,selected=false){
+  const geometry=shapeGeometry(shape);if(!geometry||geometry.width<.01||geometry.height<.01)return;
+  c.save();c.strokeStyle=shape.color||MEDIUMS[shape.medium]||'#111';c.lineWidth=Number(shape.width)||DN_LINE_WIDTHS[shape.dn]||3;c.lineCap='round';c.lineJoin='round';c.beginPath();
+  if(shape.shapeType==='rectangle'||shape.shapeType==='square')c.rect(geometry.left,geometry.top,geometry.width,geometry.height);
+  else c.ellipse(geometry.center.x,geometry.center.y,geometry.width/2,geometry.height/2,0,0,Math.PI*2);
+  c.stroke();
+  if(selected){c.strokeStyle='rgba(75,85,99,.9)';c.lineWidth=1;c.setLineDash([3,2]);c.strokeRect(geometry.left-5,geometry.top-5,geometry.width+10,geometry.height+10);}
+  c.restore();
+}
 function pointOnSegment(point,a,b){
   const dx=b.x-a.x,dy=b.y-a.y,span=dx*dx+dy*dy;
   if(!span)return null;
@@ -3740,7 +3954,7 @@ function calculateReductions(){
       // Diese Kennung bleibt beim Verschieben der Leitung erhalten; die
       // sichtbare Knotenkoordinate gehört bewusst nicht dazu.
       const overrideKey=`${branch.segmentIndex}:${branch.side}:${referenceDn}:${branch.dn}`;
-      reductions.push({...branch,node,referenceDn,key,overrideKey,mainDirection:null});
+      reductions.push({...branch,node,referenceDn,key,overrideKey,mainDirection:null,hidden:isReductionHidden(stroke,{key})});
     }
   }
   // Gleiche Kennung bedeutet gleicher Knoten und gleicher Ast: nur einmal zeichnen.
@@ -3751,6 +3965,7 @@ function reducerOrientation(stroke,reduction){
   const value=Number(stroke?.reducerOrientationOverrides?.[reduction.overrideKey]);
   return Number.isInteger(value)?((value%2)+2)%2:0;
 }
+function isReductionHidden(stroke,reduction){return stroke?.hiddenReductionKeys?.[reduction?.key]===true;}
 function reducerPositionOffset(stroke,reduction){
   const value=Number(stroke?.reducerPositionOverrides?.[reduction.overrideKey]);
   return Number.isFinite(value)?value:0;
@@ -3784,6 +3999,7 @@ function reductionGeometry(reduction){
   ]};
 }
 function drawReduction(reduction,selected=false){
+  if(reduction.hidden)return;
   const geometry=reductionGeometry(reduction);
   if(!geometry)return;
   const {stroke,branch,largerWidth,baseDistance,tip,basePoints}=geometry;
@@ -3806,7 +4022,8 @@ function pointInReductionTriangle(point,triangle){
 function hitReduction(point){
   const reductions=calculateReductions();
   for(let index=reductions.length-1;index>=0;index--){
-    const reduction=reductions[index],geometry=reductionGeometry(reduction);
+    const reduction=reductions[index];if(reduction.hidden)continue;
+    const geometry=reductionGeometry(reduction);
     if(!geometry)continue;
     const triangle=[geometry.tip,...geometry.basePoints];
     const near=triangle.some(vertex=>Math.hypot(point.x-vertex.x,point.y-vertex.y)<=8);
@@ -4101,7 +4318,13 @@ function ausschnittGeometry(marker){
   const t=Math.max(0,Math.min(1,Number(marker.t)||0));
   const center={x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};
   const axis=dimensionDirection({x:b.x-a.x,y:b.y-a.y});
-  const orientation=axis==='rising'?'falling':axis==='falling'?'rising':marker.orientation==='falling'?'falling':'rising';
+  // Ausschnitte folgen zunächst automatisch der Gegenachse der Leitung.
+  // Nach einem bewussten Drehen bleibt die gewählte steigende/fallende
+  // Richtung am Marker gespeichert – auch auf schrägen Leitungen.
+  const automaticOrientation=axis==='rising'?'falling':axis==='falling'?'rising':marker.orientation==='falling'?'falling':'rising';
+  const orientation=marker.ausschnittOrientationManual===true
+    ?(marker.orientation==='falling'?'falling':'rising')
+    :automaticOrientation;
   const vector=orientation==='rising'?{x:1,y:-GRID_SLOPE}:{x:1,y:GRID_SLOPE};
   // Gesamtstrich um 3 px verlängern, skaliert mit der blattspezifischen
   // Formfaktorgröße; beide Enden wachsen dadurch gleichmäßig.
@@ -4246,6 +4469,7 @@ function nearestArmatureSymbol(point,maxDistance=22){
   return best?.symbol||null;
 }
 function drawSymbol(symbol,selected){
+  if(isDrawingShape(symbol)){drawShape(symbol,selected);return;}
   if(symbol.type==='customSymbol'){
     const geometry=customSymbolGeometry(symbol);if(!geometry)return;
     c.save();c.strokeStyle='#111';c.lineWidth=geometry.lineWidth;c.lineCap='round';c.lineJoin='round';
@@ -4335,7 +4559,7 @@ function templateExportSymbolIssueStillInvalid(issue){
 }
 function drawTemplateExportSymbolIssueMarkers(){
   if(!templateExportSymbolIssues.length)return;
-  const planScale=currentPlanScale(),padding=18/planScale,labelSize=15/planScale,active=activeTemplateExportSymbolIssue();
+  const worldScale=currentWorldRenderScale(),padding=18/worldScale,labelSize=15/worldScale,active=activeTemplateExportSymbolIssue();
   templateExportSymbolIssues.filter(issue=>issue.sheetId===state.activeSheetId&&templateExportSymbolIssueStillInvalid(issue)).forEach(issue=>{
     const symbol=state.symbols.find(item=>item.id===issue.symbolId),geometry=templateExportSymbolMarkerGeometry(symbol,issue.worldPosition);if(!geometry)return;
     const isActive=active?.displayNumber===issue.displayNumber;
@@ -4355,7 +4579,7 @@ function renderTemplateExportSymbolIssueOverlay(){
   if(!symbolIssueOverlay)return;
   symbolIssueOverlay.replaceChildren();
   if(!templateExportSymbolIssues.length)return;
-  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),scale=currentPlanScale()*state.zoom;
+  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),scale=currentWorldRenderScale()*state.zoom;
   templateExportSymbolIssues.filter(issue=>issue.sheetId===state.activeSheetId&&templateExportSymbolIssueStillInvalid(issue)).forEach(issue=>{
     const symbol=state.symbols.find(item=>item.id===issue.symbolId),geometry=templateExportSymbolMarkerGeometry(symbol,issue.worldPosition);if(!geometry)return;
     const marker=document.createElement('div');marker.className='symbol-issue-overlay-marker';
@@ -4368,8 +4592,8 @@ function renderTemplateExportSymbolIssueOverlay(){
 }
 function centerTemplateExportSymbolIssue(issue,symbol=state.symbols.find(item=>item.id===issue?.symbolId)){
   const geometry=templateExportSymbolMarkerGeometry(symbol,issue?.worldPosition);if(!geometry)return;
-  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),planScale=currentPlanScale();
-  const screenX=canvasRect.left+geometry.center.x*planScale*state.zoom,screenY=canvasRect.top+geometry.center.y*planScale*state.zoom;
+  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),worldScale=currentWorldRenderScale();
+  const screenX=canvasRect.left+geometry.center.x*worldScale*state.zoom,screenY=canvasRect.top+geometry.center.y*worldScale*state.zoom;
   const targetX=workRect.left+workRect.width/2,targetY=workRect.top+workRect.height/2;
   state.viewPan={x:(state.viewPan?.x||0)+targetX-screenX,y:(state.viewPan?.y||0)+targetY-screenY};
   updatePaperViewTransform();
@@ -4397,12 +4621,9 @@ function isometricBaseDirection(direction,variant=0){
 // und Rasterfang. Der Ursprung bleibt in Weltkoordinaten unverändert: Nur der
 // gemeinsame Canvas-Transform skaliert Raster und Zeichnung.
 function visibleGridGeometry(){
-  const planScale=currentPlanScale(),screenWidth=paper.clientWidth,screenHeight=paper.clientHeight;
-  const worldWidth=screenWidth/planScale,worldHeight=screenHeight/planScale,spacing=GRID_STEP;
-  // Die unskalierte Blattbreite entspricht dem bisherigen 100-%-Raster und
-  // hält damit auch vorhandene, bereits gespeicherte Rasterpunkte deckungsgleich.
-  const uOrigin=-screenWidth,vOrigin=-screenWidth+screenWidth*GRID_SLOPE;
-  return {planScale,worldWidth,worldHeight,spacing,uOrigin,vOrigin};
+  const screenWidth=paper.clientWidth,screenHeight=paper.clientHeight,renderScale=currentWorldRenderScale(screenWidth);
+  const worldWidth=screenWidth/renderScale,worldHeight=screenHeight/renderScale,spacing=GRID_STEP,layout=validWorldLayout(state.renderWorldLayout)?state.renderWorldLayout:sheetWorldLayout(activeSheet(),screenWidth);
+  return {renderScale,worldWidth,worldHeight,spacing,uOrigin:layout.uOrigin,vOrigin:layout.vOrigin};
 }
 // Linienfamilien. So liegen Fangpunkte und sichtbares Raster immer deckungsgleich.
 function gridOrigins(){
@@ -4572,7 +4793,7 @@ function updateStraightLine(stroke,p){
 }
 function pos(e){
   const r=canvas.getBoundingClientRect();
-  const scale=currentPlanScale();
+  const scale=currentWorldRenderScale();
   return {x:(e.clientX-r.left)/state.zoom/scale,y:(e.clientY-r.top)/state.zoom/scale};
 }
 function panDragMatchesPointer(panDrag,event){
@@ -4716,6 +4937,7 @@ function textLassoContour(text){
   return rectangleContour(0,-ascent,width,ascent+descent).map(point=>textLocalToWorld(text,point));
 }
 function symbolLassoContours(symbol){
+  if(isDrawingShape(symbol)){const points=shapeContour(symbol);return points.length?[{points,closed:true,width:Number(symbol.width)||3}]:[];}
   if(symbol.type==='breakthrough'){
     const geometry=breakthroughGeometry(symbol);return geometry?[{points:geometry.points,closed:true,width:1}]:[];
   }
@@ -4770,6 +4992,7 @@ function selectAllVisibleObjects(){
   }).map(connection=>connection.id);
   state.selectedFreehand=state.freehandStrokes.filter(stroke=>stroke.points?.length>=2).map(stroke=>stroke.id);
   state.selectedSymbols=state.symbols.filter(symbol=>{
+    if(isDrawingShape(symbol))return !!shapeGeometry(symbol);
     if(symbol.type==='breakthrough')return !!breakthroughGeometry(symbol);
     if(symbol.type==='customSymbol')return !!customSymbolGeometry(symbol);
     return symbol.type==='airVent'?!!airVentPlacement(symbol):!!symbolSegment(symbol);
@@ -4975,7 +5198,8 @@ function moveSelectedObjects(dx,dy){
     }
     symbol.offset=symbol.offset||{x:0,y:0};symbol.offset.x+=dx;symbol.offset.y+=dy;
   });
-  state.symbols.filter(symbol=>symbolIds.has(symbol.id)&&symbol.type!=='breakthrough'&&!strokeIds.has(symbol.strokeId)).forEach(symbol=>{
+  state.symbols.filter(symbol=>symbolIds.has(symbol.id)&&isDrawingShape(symbol)).forEach(symbol=>{translateGeometry(symbol.start,dx,dy);translateGeometry(symbol.end,dx,dy);});
+  state.symbols.filter(symbol=>symbolIds.has(symbol.id)&&symbol.type!=='breakthrough'&&!isDrawingShape(symbol)&&!strokeIds.has(symbol.strokeId)).forEach(symbol=>{
     const point=symbolPlacementPoint(symbol),segment=point&&nearestStrokeSegment({x:point.x+dx,y:point.y+dy});
     if(!segment)return;
     symbol.strokeId=segment.stroke.id;symbol.segmentIndex=segment.segmentIndex;symbol.t=segment.t;
@@ -5174,9 +5398,9 @@ function openTextEditor(point,existingText=null){
   updateTextEditorDirections(editor);updateTextEditorColorMode(editor);updateTextEditorColors(editor);updateTextEditorSizeControls(editor);
   work.append(editor);
   const editorPoint=state.textDraft.point;
-  const planScale=currentPlanScale();
-  const left=Math.min(paper.offsetLeft+editorPoint.x*planScale,paper.offsetLeft+paper.clientWidth-426);
-  const top=Math.min(paper.offsetTop+editorPoint.y*planScale,paper.offsetTop+paper.clientHeight-158);
+  const worldScale=currentWorldRenderScale();
+  const left=Math.min(paper.offsetLeft+editorPoint.x*worldScale,paper.offsetLeft+paper.clientWidth-426);
+  const top=Math.min(paper.offsetTop+editorPoint.y*worldScale,paper.offsetTop+paper.clientHeight-158);
   editor.style.left=`${Math.max(paper.offsetLeft,left)}px`;editor.style.top=`${Math.max(paper.offsetTop,top)}px`;
   input.focus();redraw();
 }
@@ -5290,6 +5514,11 @@ function nearestStrokeSegment(p,maxDistance=18){
 function hitSymbol(p){
   let best=null,distance=12;
   for(const symbol of state.symbols){
+    if(isDrawingShape(symbol)){
+      const contour=shapeContour(symbol),edgeDistance=contour.length?Math.min(...contour.map((point,index)=>pointOnSegment(p,point,contour[(index+1)%contour.length])?.distance??Infinity)):Infinity;
+      if(edgeDistance<distance){distance=edgeDistance;best=symbol.id;}
+      continue;
+    }
     if(symbol.type==='breakthrough'){
       const geometry=breakthroughGeometry(symbol);
       if(!geometry)continue;
@@ -5491,17 +5720,37 @@ canvas.addEventListener('pointerdown',e=>{
   if(state.pasteDraft){
     save();if(cloneClipboardAt(p)){state.pasteDraft=null;updateButtons();redraw();}return;
   }
-  if(state.tool==='select'&&state.cornerPick){
+  if((state.tool==='select'||state.tool==='splitStroke')&&state.cornerPick){
     const pick=state.cornerPick;
     const candidate=pick.candidates.find(item=>Math.hypot(p.x-item.point.x,p.y-item.point.y)<=12);
-    if(!candidate){cancelCornerPick();return;}
+    if(!candidate){
+      if(state.tool==='splitStroke'){
+        const stroke=hit(p);
+        if(stroke)selectStrokeForSplitting(state.strokes.find(item=>item.id===stroke));
+        else showTransientHint('Bitte zuerst eine Leitung oder einen markierten Eckpunkt antippen.');
+        return;
+      }
+      cancelCornerPick();return;
+    }
+    if(pick.kind==='split'){
+      const stroke=state.strokes.find(item=>item.id===candidate.strokeId);
+      if(stroke&&candidate.index>0&&candidate.index<stroke.points.length-1){
+        save();const second=splitStrokeAtCorner(stroke,candidate.index);
+        if(second){state.splitStrokeTargetIds=state.splitStrokeTargetIds.filter(id=>id!==stroke.id).concat([stroke.id,second.id]);state.cornerPick=splitCornerPickForStrokes(state.splitStrokeTargetIds);clearAllSelections();state.selected=[stroke.id,second.id];showTransientHint(state.cornerPick?'Weiteren Eckpunkt antippen oder eine andere Leitung wählen.':'Leitung getrennt.');}
+      }
+      updateButtons();redraw();return;
+    }
     if(pick.kind==='single'){
       const stroke=state.strokes.find(item=>item.id===pick.strokeId);
       if(stroke){
-        const valid=pick.action==='round'
-          ?roundableCornerIndices(stroke).includes(candidate.index)
-          :stroke.roundedCornerIds.includes(cornerIdAt(stroke,candidate.index));
-        if(valid){save();pick.action==='round'?roundSingleCorner(stroke,candidate.index):straightenSingleCorner(stroke,candidate.index);}
+        if(pick.action==='split'){
+          if(candidate.index>0&&candidate.index<stroke.points.length-1){save();const second=splitStrokeAtCorner(stroke,candidate.index);if(second)state.selected=[stroke.id,second.id];}
+        }else{
+          const valid=pick.action==='round'
+            ?roundableCornerIndices(stroke).includes(candidate.index)
+            :stroke.roundedCornerIds.includes(cornerIdAt(stroke,candidate.index));
+          if(valid){save();pick.action==='round'?roundSingleCorner(stroke,candidate.index):straightenSingleCorner(stroke,candidate.index);}
+        }
       }
     }else{
       const selected=state.strokes.filter(stroke=>state.selected.includes(stroke.id));
@@ -5520,6 +5769,11 @@ canvas.addEventListener('pointerdown',e=>{
   }else if(state.tool==='freehand'){
     save();
     state.currentFreehand=createFreehandStroke(p);
+    redraw();
+  }else if(state.tool==='shape'){
+    save();
+    const start=state.grid?nearestGridPoint(p):p;
+    state.shapeDraft=createShape(start);
     redraw();
   }else if(state.tool==='text'){
     if(state.textDraft){closeTextEditor();redraw();return;}
@@ -5644,6 +5898,10 @@ canvas.addEventListener('pointerdown',e=>{
     const variant=customSymbolVariantId({x:(b.x-a.x)/length,y:(b.y-a.y)/length});
     if(!definition.variants[variant]){showTransientHint(`Für diese Leitungsrichtung fehlt die Variante „${variant.replace('-', ' ')}“.`);redraw();return;}
     save();state.symbols.push({id:createId(),type:'customSymbol',customSymbolId:definition.id,strokeId:segment.stroke.id,segmentIndex:segment.segmentIndex,t:segment.t,variant});redraw();
+  }else if(state.tool==='splitStroke'){
+    const strokeId=hit(p);
+    if(strokeId)selectStrokeForSplitting(state.strokes.find(item=>item.id===strokeId));
+    else showTransientHint('Bitte eine durchgehende Leitung antippen.');
   }else if(state.tool==='select'){
     const reduction=hitReduction(p);
     if(reduction){
@@ -5832,6 +6090,12 @@ canvas.addEventListener('pointermove',e=>{
     redraw();
     return;
   }
+  if(state.shapeDraft){
+    const point=pos(e);
+    state.shapeDraft.end=state.grid?nearestGridPoint(point):point;
+    redraw();
+    return;
+  }
   if(!state.current)return;
   e.preventDefault();const p=pos(e);
   if(state.tool==='straight'){
@@ -5892,6 +6156,13 @@ canvas.addEventListener('pointerup',e=>{
     state.currentFreehand=null;redraw();
     return;
   }
+  if(state.shapeDraft){
+    const shape=state.shapeDraft,geometry=shapeGeometry(shape);
+    state.shapeDraft=null;
+    if(geometry&&geometry.width>1&&geometry.height>1)state.symbols.push(shape);
+    redraw();
+    return;
+  }
   if((state.tool==='draw'||state.tool==='straight') && state.current){
     const closes=state.tool==='draw'&&state.current.closeCandidate&&canCloseGeneralStroke(state.current,pos(e));
     if(closes){
@@ -5905,7 +6176,7 @@ canvas.addEventListener('pointerup',e=>{
     state.current=null;redraw();
   }
 });
-canvas.addEventListener('pointercancel',e=>{if(e.pointerType==='touch'&&endTabletTouchGesture(e))return;if(panDragMatchesPointer(state.viewPanDrag,e)){state.viewPanDrag=null;paper.classList.remove('panning');return;}clearTextLongPress();state.current=null;state.currentFreehand=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragSelection=null;state.dragStrokeEndpoint=null;state.dragInsulationMarker=null;state.dragReduction=null;state.dragWastewaterBend=null;state.lassoDraft=null;state.wastewaterBendPreview=null;redraw()});
+canvas.addEventListener('pointercancel',e=>{if(e.pointerType==='touch'&&endTabletTouchGesture(e))return;if(panDragMatchesPointer(state.viewPanDrag,e)){state.viewPanDrag=null;paper.classList.remove('panning');return;}clearTextLongPress();state.current=null;state.currentFreehand=null;state.shapeDraft=null;state.dimensionDraft=null;state.dimensionPreviewPoint=null;state.armatureDraft=null;state.dragBreakthrough=null;state.dragSelection=null;state.dragStrokeEndpoint=null;state.dragInsulationMarker=null;state.dragReduction=null;state.dragWastewaterBend=null;state.lassoDraft=null;state.wastewaterBendPreview=null;redraw()});
 // Die Finger-Geste darf auch im freien Bereich neben dem Papier beginnen.
 // Bedienelemente und die Seitenleiste bleiben davon bewusst ausgenommen.
 const tabletTouchBlockedSelector='#sideTools,#zoomControls,#hint,button,input,select,textarea,[contenteditable="true"]';
@@ -5960,6 +6231,9 @@ window.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&state.tool==='softConnection'){
     event.preventDefault();state.softConnectionDraft=null;state.softConnectionPreview=null;state.tool='draw';updateButtons();redraw();
   }
+  if(event.key==='Escape'&&state.tool==='splitStroke'){
+    event.preventDefault();state.cornerPick=null;state.splitStrokeTargetIds=[];state.tool='select';updateButtons();redraw();return;
+  }
   if(event.key==='Escape'&&state.cornerPick){
     event.preventDefault();cancelCornerPick();
   }
@@ -5983,7 +6257,8 @@ function updateButtons(){
     templateExportSymbolIssueDialog.hidden=true;
     symbolIssueOverlay.replaceChildren();
   }
-  if(state.cornerPick&&state.tool!=='select')state.cornerPick=null;
+  if(state.cornerPick&&state.tool!=='select'&&state.tool!=='splitStroke')state.cornerPick=null;
+  if(state.tool!=='splitStroke')state.splitStrokeTargetIds=[];
   if(state.pasteDraft&&state.tool!=='select')state.pasteDraft=null;
   if(state.armatureDraft&&state.tool!=='insulationArmature')state.armatureDraft=null;
   if(state.tool!=='wastewaterBend')state.wastewaterBendPreview=null;
@@ -6018,7 +6293,12 @@ function updateButtons(){
   symbolMenu.querySelectorAll('[data-symbol]').forEach(option=>option.classList.toggle('active',!formFactorMode&&symbolToolActive&&option.dataset.symbol===state.activeSymbol));
   symbolMenu.querySelectorAll('[data-custom-symbol]').forEach(option=>option.classList.toggle('active',state.tool==='customSymbol'&&option.dataset.customSymbol===state.activeCustomSymbolId));
   symbolMenu.querySelectorAll('[data-form-factor]').forEach(option=>option.classList.toggle('active',formFactorMode&&option.dataset.formFactor===({insulationBow:'bow',insulationTee:'tee',insulationArmature:'armature',insulationAufdopplung:'aufdopplung',insulationAusschnitt:'ausschnitt',insulationEndstelle:'endstelle'}[state.tool])));
-  insertMenuBtn.classList.toggle('active',state.tool==='wastewaterBend'||state.tool==='text'||state.tool==='dimension'||symbolToolActive);
+  const shapeToolActive=state.tool==='shape';
+  const shapeNames={circle:'Kreis',ellipse:'Ellipse',rectangle:'Rechteck',square:'Quadrat'};
+  shapeMenuBtn.classList.toggle('active',shapeToolActive);
+  shapeMenuBtn.textContent=shapeToolActive?`Formen: ${shapeNames[state.activeShape]||'Kreis'} ▸`:'Formen ▸';
+  shapeMenu.querySelectorAll('[data-shape]').forEach(option=>option.classList.toggle('active',shapeToolActive&&option.dataset.shape===state.activeShape));
+  insertMenuBtn.classList.toggle('active',state.tool==='wastewaterBend'||state.tool==='text'||state.tool==='dimension'||state.tool==='splitStroke'||symbolToolActive||shapeToolActive);
   selectBtn.classList.toggle('active',state.tool==='select');
   const selected=state.strokes.filter(s=>state.selected.includes(s.id));
   const hasSelection=selected.length||state.selectedSymbols.length||state.selectedInsulationMarkers.length||state.selectedWastewaterBends.length||state.selectedSoftConnections.length||state.selectedFreehand.length||state.selectedTexts.length||state.selectedDimensions.length;
@@ -6028,8 +6308,8 @@ function updateButtons(){
     ?state.dimensions.find(dimension=>dimension.id===state.selectedDimensions[0]):null;
   const selectedTMarker=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedInsulationMarkers.length===1
     ?state.insulationMarkers.find(marker=>marker.id===state.selectedInsulationMarkers[0]&&marker.type==='tee'):null;
-  const selectedVerticalAusschnitt=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedInsulationMarkers.length===1
-    ?state.insulationMarkers.find(marker=>marker.id===state.selectedInsulationMarkers[0]&&marker.type==='ausschnitt'&&ausschnittGeometry(marker)?.vertical):null;
+  const selectedAusschnitt=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedInsulationMarkers.length===1
+    ?state.insulationMarkers.find(marker=>marker.id===state.selectedInsulationMarkers[0]&&marker.type==='ausschnitt'):null;
   const selectedVerticalEndstelle=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedInsulationMarkers.length===1
     ?state.insulationMarkers.find(marker=>marker.id===state.selectedInsulationMarkers[0]&&marker.type==='endstelle'&&ausschnittGeometry(marker)?.vertical):null;
   const selectedWastewaterBend=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedInsulationMarkers.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedWastewaterBends.length===1
@@ -6038,7 +6318,7 @@ function updateButtons(){
   mirrorBtn.textContent=selectedSymbol?.type==='customSymbol'?'↔ Variante wechseln':'Spiegeln';
   editDimensionBtn.hidden=!selectedDimension;
   rotateTMarkerBtn.hidden=!selectedTMarker;
-  rotateAusschnittBtn.hidden=state.viewMode!=='isolation'||!selectedVerticalAusschnitt;
+  rotateAusschnittBtn.hidden=state.viewMode!=='isolation'||!selectedAusschnitt;
   rotateEndstelleBtn.hidden=state.viewMode!=='isolation'||!selectedVerticalEndstelle;
   rotateWastewaterBendBtn.hidden=!selectedWastewaterBend;
   const selectedStroke=selected.length===1&&state.selectedSymbols.length===0&&state.selectedInsulationMarkers.length===0&&state.selectedWastewaterBends.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0
@@ -6057,6 +6337,8 @@ function updateButtons(){
     state.tool==='straight'?'Gerade Leitung: Start und Ende ziehen':
     state.tool==='freehand'?'Freihand: frei zeichnen':
     state.tool==='text'?'Text: Rasterpunkt antippen und eingeben':
+    state.tool==='splitStroke'&&state.cornerPick?'Trennen: einen oder mehrere markierte Eckpunkte antippen':
+    state.tool==='splitStroke'?'Trennen: zuerst eine durchgehende Leitung antippen':
     state.tool==='dimension'&&state.dimensionDraft?.phase==='label'?'Bemaßung: Textposition setzen':
     state.tool==='dimension'&&state.dimensionDraft?.phase==='configure'?'Bemaßung: Maßwert festlegen':
     state.tool==='dimension'&&state.dimensionDraft?.phase==='end'?'Bemaßung: Endpunkt setzen':
@@ -6181,6 +6463,7 @@ function updateSelectionActionBar(){
     toggleInsulationVisibilityBtn.hidden=true;
     toggleReducerSuppressionBtn.hidden=true;
     rotateReducerBtn.hidden=true;
+    toggleReductionVisibilityBtn.hidden=true;
     insulationExistingPicker.hidden=true;
     closeInsulationExistingStyleMenu();
     layerOrderPicker.hidden=true;
@@ -6218,6 +6501,10 @@ function updateSelectionActionBar(){
   toggleReducerSuppressionBtn.title=reducerLabel;toggleReducerSuppressionBtn.setAttribute('aria-label',reducerLabel);
   rotateReducerBtn.hidden=!selectedReducer;
   rotateReducerBtn.classList.toggle('active',!!selectedReducer);
+  toggleReductionVisibilityBtn.hidden=!selectedReducer;
+  toggleReductionVisibilityBtn.classList.toggle('active',!!selectedReducer?.hidden);
+  const reductionVisibilityLabel=selectedReducer?.hidden?'Reduzierung wieder anzeigen':'Reduzierung ausblenden';
+  toggleReductionVisibilityBtn.title=reductionVisibilityLabel;toggleReductionVisibilityBtn.setAttribute('aria-label',reductionVisibilityLabel);
   layerOrderPicker.hidden=!layerableSelectedItems().length;
   if(layerOrderPicker.hidden)closeLayerOrderMenu();
   toolCopyBtn.disabled=copySelectionBtn.disabled;
@@ -6255,7 +6542,8 @@ function applyLayerOrderAction(action){
   closeLayerOrderMenu();updateButtons();redraw();
 }
 function closeWastewaterBendMenu(){wastewaterBendMenu.hidden=true;wastewaterBendPicker.classList.remove('menu-opens-left');wastewaterBendBtn.setAttribute('aria-expanded','false');}
-function closeInsertMenu(){insertMenu.hidden=true;insertMenuBtn.setAttribute('aria-expanded','false');closeWastewaterBendMenu();closeSymbolMenu();}
+function closeShapeMenu(){shapeMenu.hidden=true;shapePicker.classList.remove('menu-opens-left');shapeMenuBtn.setAttribute('aria-expanded','false');}
+function closeInsertMenu(){insertMenu.hidden=true;insertMenuBtn.setAttribute('aria-expanded','false');closeWastewaterBendMenu();closeShapeMenu();closeSymbolMenu();}
 function toggleToolMenu(picker,menu,button){
   const open=menu.hidden;
   menu.hidden=!open;
@@ -6529,9 +6817,10 @@ insertMenuBtn.onclick=()=>{
   const open=insertMenu.hidden;
   insertMenu.hidden=!open;
   insertMenuBtn.setAttribute('aria-expanded',String(open));
-  if(!open){closeWastewaterBendMenu();closeSymbolMenu();}
+  if(!open){closeWastewaterBendMenu();closeShapeMenu();closeSymbolMenu();}
 };
 wastewaterBendBtn.onclick=()=>{toggleToolMenu(wastewaterBendPicker,wastewaterBendMenu,wastewaterBendBtn);};
+shapeMenuBtn.onclick=()=>{toggleToolMenu(shapePicker,shapeMenu,shapeMenuBtn);};
 symbolMenuBtn.onclick=()=>{toggleToolMenu(symbolPicker,symbolMenu,symbolMenuBtn);};
 exportMenuBtn.onclick=()=>{const open=exportMenu.hidden;exportMenu.hidden=!open;exportMenuBtn.setAttribute('aria-expanded',String(open));};
 quantitiesBtn.onclick=()=>{
@@ -6636,6 +6925,11 @@ wastewaterBendMenu.addEventListener('click',event=>{
   state.wastewaterBendMode=mode;state.wastewaterBendType=type;state.tool='wastewaterBend';state.wastewaterBendPreview=null;
   closeTextEditor();leaveDimensionPlacement();clearAllSelections();closeInsertMenu();updateButtons();redraw();
 });
+shapeMenu.addEventListener('click',event=>{
+  const option=event.target.closest('[data-shape]');if(!option)return;
+  state.activeShape=option.dataset.shape;state.tool='shape';state.current=null;state.currentFreehand=null;state.shapeDraft=null;
+  closeTextEditor();leaveDimensionPlacement();clearAllSelections();closeInsertMenu();updateButtons();redraw();
+});
 insertMenu.addEventListener('click',event=>{
   const button=event.target.closest('button');
   if(button===textBtn||button===dimensionBtn)closeInsertMenu();
@@ -6657,6 +6951,7 @@ document.addEventListener('pointerdown',event=>{
   const insideQuickMenu=quickMenu.contains(event.target),insideQuickSymbolMenu=quickSymbolMenuOpen&&symbolMenu.contains(event.target);
   if(!insertPicker.contains(event.target)&&!insideQuickMenu)closeInsertMenu();
   if(!symbolPicker.contains(event.target)&&!insideQuickMenu)closeSymbolMenu();
+  if(!shapePicker.contains(event.target)&&!insideQuickMenu)closeShapeMenu();
   if(!wastewaterBendPicker.contains(event.target))closeWastewaterBendMenu();
   if(!exportPicker.contains(event.target))closeExportMenu();
   if(!layerOrderPicker.contains(event.target))closeLayerOrderMenu();
@@ -6686,9 +6981,10 @@ rotateTMarkerBtn.onclick=()=>{
 };
 rotateAusschnittBtn.onclick=()=>{
   const marker=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedInsulationMarkers.length===1
-    ?state.insulationMarkers.find(item=>item.id===state.selectedInsulationMarkers[0]&&item.type==='ausschnitt'&&ausschnittGeometry(item)?.vertical):null;
+    ?state.insulationMarkers.find(item=>item.id===state.selectedInsulationMarkers[0]&&item.type==='ausschnitt'):null;
   if(!marker)return;
-  save();marker.orientation=marker.orientation==='falling'?'rising':'falling';updateButtons();redraw();
+  const visibleOrientation=ausschnittGeometry(marker)?.orientation||'rising';
+  save();marker.orientation=visibleOrientation==='falling'?'rising':'falling';marker.ausschnittOrientationManual=true;updateButtons();redraw();
 };
 rotateEndstelleBtn.onclick=()=>{
   const marker=state.selected.length===0&&state.selectedSymbols.length===0&&state.selectedFreehand.length===0&&state.selectedTexts.length===0&&state.selectedDimensions.length===0&&state.selectedInsulationMarkers.length===1
@@ -6705,6 +7001,10 @@ cutSelectionBtn.onclick=()=>{if(!selectedObjectCount())return;state.clipboard=bu
 duplicateSelectionBtn.onclick=()=>{if(!selectedObjectCount())return;state.clipboard=buildClipboard();startPastePreview();};
 pasteSelectionBtn.onclick=()=>startPastePreview();
 rotateSelectionBtn.onclick=rotateSelectedObjects;
+splitStrokeBtn.onclick=()=>{
+  closeTextEditor();leaveDimensionPlacement();state.tool='splitStroke';state.cornerPick=null;state.splitStrokeTargetIds=[];clearAllSelections();closeInsertMenu();
+  showTransientHint('Leitung antippen, danach einen oder mehrere Eckpunkte wählen.',2800);updateButtons();redraw();
+};
 toggleInsulationExistingStyleMenuBtn.onclick=()=>{
   const open=toggleInsulationExistingStyleMenu.hidden;
   toggleInsulationExistingStyleMenu.hidden=!open;
@@ -6749,6 +7049,19 @@ rotateReducerBtn.onclick=()=>{
   const overrides=stroke.reducerOrientationOverrides&&typeof stroke.reducerOrientationOverrides==='object'
     ?stroke.reducerOrientationOverrides:{};
   stroke.reducerOrientationOverrides={...overrides,[reduction.overrideKey]:(reducerOrientation(stroke,reduction)+1)%2};
+  updateButtons();redraw();
+};
+toggleReductionVisibilityBtn.onclick=()=>{
+  const reduction=selectedReductionData();
+  const stroke=reduction&&state.strokes.find(candidate=>candidate.id===reduction.strokeId);
+  if(!reduction||!stroke)return;
+  save();
+  const hiddenKeys=stroke.hiddenReductionKeys&&typeof stroke.hiddenReductionKeys==='object'
+    ?{...stroke.hiddenReductionKeys}:{};
+  if(reduction.hidden)delete hiddenKeys[reduction.key];
+  else hiddenKeys[reduction.key]=true;
+  if(Object.keys(hiddenKeys).length)stroke.hiddenReductionKeys=hiddenKeys;
+  else delete stroke.hiddenReductionKeys;
   updateButtons();redraw();
 };
 layerOrderBtn.onclick=()=>{

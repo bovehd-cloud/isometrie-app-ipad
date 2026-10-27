@@ -1,4 +1,4 @@
-const CACHE_NAME='isometrie-app-shell-v3';
+const CACHE_NAME='isometrie-app-shell-v4';
 const OFFLINE_START_URL=new URL('./index.html',self.registration.scope).href;
 
 // Die Kern-Dateien müssen vollständig vorhanden sein, damit die App auch ohne

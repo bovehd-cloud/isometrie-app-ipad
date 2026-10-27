@@ -1,13 +1,8 @@
 20203;Kleinbaustellen
 20215;Wilhelm-Kress-Platz
-20233;Gaslos 3
-20234;Sebastian-Platz
 20222;Bossigasse 18-22
 20223;Erlaaer Straße 131-133
 20224;Angeligasse 78-80
-20220;Rahmenvertrag WW
-20230;Gaslos 2
-20231;Kirchhoff
 20232a;Levasseur 5
 20232b;Canavese 9-15
 20232c;Canavese 6-8
@@ -33,9 +28,12 @@
 25004;Gladbeckstraße 3
 25005;Treustraße 61-69
 25006;Freiheitsplatz 1
-25007;
 25008;Mühlschüttelgasse 37
 25009;Pilgerimgasse 4-6
 25010;Hütteldorfer Straße 268-274
 25011;Brigittaplatz 1-2 TGA GU
 26001;Michaelerstraße 30
+26002;Arltgasse 34-36
+26003;Autokaderstraße 3-7
+26004;Ödenburger Straße 73-85
+26008;Maurer Hauptplatz 5
