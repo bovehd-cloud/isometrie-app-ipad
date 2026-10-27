@@ -373,7 +373,7 @@ body.dark-mode #textEditor .text-color.active{box-shadow:0 0 0 2px #202833,0 0 0
 <div id="app">
   <div id="toolbar">
     <div class="app-brand" aria-label="Isometrie-App">
-      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=3" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=3" alt="" aria-hidden="true"></span>
+      <span class="app-brand-mark"><img class="app-brand-logo-light" src="rohrtec-logo-hell.png?v=4" alt="" aria-hidden="true"><img class="app-brand-logo-dark" src="rohrtec-logo-dark.png?v=4" alt="" aria-hidden="true"></span>
       <div><strong>Isometrie-App</strong><small>Isometrien zeichnen</small></div>
     </div>
     <div class="history-controls" role="group" aria-label="Bearbeitungsschritte">
@@ -1232,6 +1232,19 @@ function currentWorldRenderScale(displayWidth=paper.clientWidth){
   const width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH);
   return width/layout.worldWidth*(currentPlanScale()/layout.referencePlanScale);
 }
+// Das Papier darf responsiv in die verfügbare Fläche passen, die sichtbare
+// Rasterweite bleibt jedoch geräteunabhängig. Ohne diesen Ausgleich wäre ein
+// Rasterpunkt auf einem schmaleren Tablet deutlich kleiner als am Computer.
+// state.zoom bleibt dabei der vom Benutzer gewählte Ansichtszoom; der
+// Geräteausgleich ist ausschließlich eine Darstellungsumrechnung.
+function currentDeviceViewScale(displayWidth=paper.clientWidth){
+  const layout=validWorldLayout(state.renderWorldLayout)?state.renderWorldLayout:sheetWorldLayout(activeSheet(),displayWidth);
+  const width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH);
+  return layout.worldWidth/width;
+}
+function currentEffectiveViewZoom(displayWidth=paper.clientWidth){
+  return state.zoom*currentDeviceViewScale(displayWidth);
+}
 function sheetWorldRenderScale(sheet,displayWidth){
   const layout=sheetWorldLayout(sheet,displayWidth),width=Math.max(1,Number(displayWidth)||FALLBACK_WORLD_PAPER_WIDTH),planScale=normalizePlanScale(sheet?.planScale);
   return width/layout.worldWidth*(planScale/layout.referencePlanScale);
@@ -1521,6 +1534,7 @@ function resize(){
   const dpr=Math.max(1,devicePixelRatio||1);
   [gridCanvas,canvas].forEach(x=>{x.width=Math.round(w*dpr);x.height=Math.round(h*dpr);x.style.width=w+'px';x.style.height=h+'px'});
   g.setTransform(dpr,0,0,dpr,0,0); c.setTransform(dpr,0,0,dpr,0,0);
+  updatePaperViewTransform();
   drawGrid(); redraw();
 }
 function normalizeViewZoom(value){return Math.max(.5,Math.min(2,Math.round(Number(value)*10)/10||1));}
@@ -1537,15 +1551,16 @@ function setZoom(value){
 }
 function updatePaperViewTransform(){
   const pan=state.viewPan||{x:0,y:0};
+  const viewZoom=currentEffectiveViewZoom();
   // Das Blatt muss mit einem gut erreichbaren Rand im Arbeitsbereich bleiben.
   // So kann eine Finger-Geste die Ansicht nicht "verlieren" lassen.
   if(paper.clientWidth&&paper.clientHeight&&work.clientWidth&&work.clientHeight){
-    const margin=72,baseCenterX=paper.offsetLeft+paper.clientWidth/2,baseCenterY=paper.offsetTop+paper.clientHeight/2,halfWidth=paper.clientWidth*state.zoom/2,halfHeight=paper.clientHeight*state.zoom/2;
+    const margin=72,baseCenterX=paper.offsetLeft+paper.clientWidth/2,baseCenterY=paper.offsetTop+paper.clientHeight/2,halfWidth=paper.clientWidth*viewZoom/2,halfHeight=paper.clientHeight*viewZoom/2;
     const minX=margin-baseCenterX-halfWidth,maxX=work.clientWidth-margin-baseCenterX+halfWidth,minY=margin-baseCenterY-halfHeight,maxY=work.clientHeight-margin-baseCenterY+halfHeight;
     pan.x=Math.min(maxX,Math.max(minX,pan.x));pan.y=Math.min(maxY,Math.max(minY,pan.y));
   }
   state.viewPan=pan;
-  paper.style.transform=`translate(${pan.x}px,${pan.y}px) scale(${state.zoom})`;
+  paper.style.transform=`translate(${pan.x}px,${pan.y}px) scale(${viewZoom})`;
   renderTemplateExportSymbolIssueOverlay();
 }
 function updatePlanScaleControls(){
@@ -4579,7 +4594,7 @@ function renderTemplateExportSymbolIssueOverlay(){
   if(!symbolIssueOverlay)return;
   symbolIssueOverlay.replaceChildren();
   if(!templateExportSymbolIssues.length)return;
-  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),scale=currentWorldRenderScale()*state.zoom;
+  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),scale=currentWorldRenderScale()*currentEffectiveViewZoom();
   templateExportSymbolIssues.filter(issue=>issue.sheetId===state.activeSheetId&&templateExportSymbolIssueStillInvalid(issue)).forEach(issue=>{
     const symbol=state.symbols.find(item=>item.id===issue.symbolId),geometry=templateExportSymbolMarkerGeometry(symbol,issue.worldPosition);if(!geometry)return;
     const marker=document.createElement('div');marker.className='symbol-issue-overlay-marker';
@@ -4592,8 +4607,8 @@ function renderTemplateExportSymbolIssueOverlay(){
 }
 function centerTemplateExportSymbolIssue(issue,symbol=state.symbols.find(item=>item.id===issue?.symbolId)){
   const geometry=templateExportSymbolMarkerGeometry(symbol,issue?.worldPosition);if(!geometry)return;
-  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),worldScale=currentWorldRenderScale();
-  const screenX=canvasRect.left+geometry.center.x*worldScale*state.zoom,screenY=canvasRect.top+geometry.center.y*worldScale*state.zoom;
+  const canvasRect=canvas.getBoundingClientRect(),workRect=work.getBoundingClientRect(),worldScale=currentWorldRenderScale(),viewZoom=currentEffectiveViewZoom();
+  const screenX=canvasRect.left+geometry.center.x*worldScale*viewZoom,screenY=canvasRect.top+geometry.center.y*worldScale*viewZoom;
   const targetX=workRect.left+workRect.width/2,targetY=workRect.top+workRect.height/2;
   state.viewPan={x:(state.viewPan?.x||0)+targetX-screenX,y:(state.viewPan?.y||0)+targetY-screenY};
   updatePaperViewTransform();
@@ -4793,8 +4808,8 @@ function updateStraightLine(stroke,p){
 }
 function pos(e){
   const r=canvas.getBoundingClientRect();
-  const scale=currentWorldRenderScale();
-  return {x:(e.clientX-r.left)/state.zoom/scale,y:(e.clientY-r.top)/state.zoom/scale};
+  const scale=currentWorldRenderScale(),viewZoom=currentEffectiveViewZoom();
+  return {x:(e.clientX-r.left)/viewZoom/scale,y:(e.clientY-r.top)/viewZoom/scale};
 }
 function panDragMatchesPointer(panDrag,event){
   return panDrag&&(
@@ -4830,7 +4845,7 @@ function resetTabletTouchGesture(){
   if(pointers.length===1){tabletTouchGesture={kind:'pan',startX:pointers[0].x,startY:pointers[0].y,originX:pan.x,originY:pan.y};return;}
   const [first,second]=pointers,centerX=(first.x+second.x)/2,centerY=(first.y+second.y)/2;
   const canvasRect=canvas.getBoundingClientRect();
-  tabletTouchGesture={kind:'pinch',startDistance:Math.max(1,Math.hypot(second.x-first.x,second.y-first.y)),startZoom:state.zoom,startPan:{...pan},centerX,centerY,canvasLeft:canvasRect.left,canvasTop:canvasRect.top};
+  tabletTouchGesture={kind:'pinch',startDistance:Math.max(1,Math.hypot(second.x-first.x,second.y-first.y)),startZoom:state.zoom,startEffectiveZoom:currentEffectiveViewZoom(),startPan:{...pan},centerX,centerY,canvasLeft:canvasRect.left,canvasTop:canvasRect.top};
 }
 function beginTabletTouchGesture(event,captureElement=canvas){
   event.preventDefault();tabletTouchPointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
@@ -4850,9 +4865,11 @@ function moveTabletTouchGesture(event){
   // Der Bezugspunkt stammt bewusst vom Beginn der Geste. Ein während des
   // Zoomens bereits transformiertes Canvas würde den Mittelpunkt sonst bei
   // jeder Bewegung erneut verschieben und das Blatt aus dem Sichtfeld treiben.
-  const localX=(gesture.centerX-gesture.canvasLeft)/gesture.startZoom,localY=(gesture.centerY-gesture.canvasTop)/gesture.startZoom;
+  const startEffectiveZoom=gesture.startEffectiveZoom||gesture.startZoom;
+  const nextEffectiveZoom=nextZoom*currentDeviceViewScale();
+  const localX=(gesture.centerX-gesture.canvasLeft)/startEffectiveZoom,localY=(gesture.centerY-gesture.canvasTop)/startEffectiveZoom;
   state.zoom=nextZoom;
-  state.viewPan={x:gesture.startPan.x+centerX-gesture.centerX+(gesture.startZoom-nextZoom)*(localX-paperCenterX),y:gesture.startPan.y+centerY-gesture.centerY+(gesture.startZoom-nextZoom)*(localY-paperCenterY)};
+  state.viewPan={x:gesture.startPan.x+centerX-gesture.centerX+(startEffectiveZoom-nextEffectiveZoom)*(localX-paperCenterX),y:gesture.startPan.y+centerY-gesture.centerY+(startEffectiveZoom-nextEffectiveZoom)*(localY-paperCenterY)};
   updatePaperViewTransform();syncViewZoomControls();return true;
 }
 function endTabletTouchGesture(event){
@@ -4869,9 +4886,10 @@ canvas.addEventListener('wheel',event=>{
   const oldZoom=state.zoom,nextZoom=normalizeViewZoom(oldZoom+(event.deltaY<0?.1:-.1));
   if(nextZoom===oldZoom)return;
   const rect=canvas.getBoundingClientRect();
-  const localX=(event.clientX-rect.left)/oldZoom,localY=(event.clientY-rect.top)/oldZoom;
+  const oldEffectiveZoom=currentEffectiveViewZoom(),nextEffectiveZoom=nextZoom*currentDeviceViewScale();
+  const localX=(event.clientX-rect.left)/oldEffectiveZoom,localY=(event.clientY-rect.top)/oldEffectiveZoom;
   const centerX=paper.clientWidth/2,centerY=paper.clientHeight/2,pan=state.viewPan||{x:0,y:0};
-  state.viewPan={x:pan.x+(oldZoom-nextZoom)*(localX-centerX),y:pan.y+(oldZoom-nextZoom)*(localY-centerY)};
+  state.viewPan={x:pan.x+(oldEffectiveZoom-nextEffectiveZoom)*(localX-centerX),y:pan.y+(oldEffectiveZoom-nextEffectiveZoom)*(localY-centerY)};
   setZoom(nextZoom);
 },{passive:false});
 function distancePointSegment(p,a,b){
